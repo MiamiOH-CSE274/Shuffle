@@ -10,7 +10,7 @@ Background info
 
 Standard decks of playing cards contain 52 cards. In order to play a game, one of the players usually attempts to randomize the order of the cards by "shuffling" them. We will consider a standard "riffle" shuffle (See: http://www.wikihow.com/Shuffle-a-Deck-of-Cards-(Riffle-Bridge) ).
 
-<iframe width="560" height="315" src="//www.youtube.com/embed/o-KBNdbJOGk" frameborder="0" allowfullscreen></iframe>
+<object width="560" height="315"><param name="movie" value="//www.youtube.com/v/o-KBNdbJOGk?hl=en_US&amp;version=3"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="//www.youtube.com/v/o-KBNdbJOGk?hl=en_US&amp;version=3" type="application/x-shockwave-flash" width="560" height="315" allowscriptaccess="always" allowfullscreen="true"></embed></object>
 
 You may notice, however, that a single "riffle" of the cards won't end up scrambling them much: For example, there is quite a good chance that the bottom card of the deck will end up being one of the bottom 2-3 cards on the deck after the riffle.
 
