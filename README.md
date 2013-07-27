@@ -8,8 +8,71 @@ Using either your Queue or Linked List implementation from lab is recommended.
 Background info
 ---------------
 
-Standard decks of playing cards contain 52 cards. In order to play a game, one of the players usually attempts to randomize the order of the cards by "shuffling" them. We will consider a standard "riffle" shuffle (See: http://www.wikihow.com/Shuffle-a-Deck-of-Cards-(Riffle-Bridge) or video at http://youtu.be/o-KBNdbJOGk ).
+Standard decks of playing cards contain 52 cards. In order to play a game, one of the players usually attempts to randomize the order of the cards by "shuffling" them. Here are some well known types of shuffles:
 
-Ideally, we would like the cards to be randomly shuffled, independently of where they started. So even if a card (say the Ace of Spades) is on top of the deck when you start, it is equally liked to be in any of the 52 possible positions at the end of the shuffle. In other words, we want the positions of the cards in the deck to be uniformly randomly distributed by the shuffle.
+1. "Riffle" shuffle (See: http://www.wikihow.com/Shuffle-a-Deck-of-Cards-(Riffle-Bridge) or video at http://youtu.be/o-KBNdbJOGk )
+2. "Overhand" shuffle (See: http://youtu.be/N2xlgAFWBZM)
+3. "Faro" or "Pharaoh" shuffle (See: http://youtu.be/ch_SMNQ-awM)
+4. "Hindu" shuffle (See: http://youtu.be/LgVFb1U_fco)
 
-In this project you will use a data structure (either queue or linked list is recommended) to simulate shuffling a deck of cards. You will implement a simple algorithm that models/simulates a riffle shuffle. Then you will use this code to try to answer the question: How many times do I need to riffle the cards to get them well shuffled?
+Ideally, we would like the cards to be randomly shuffled, independently of where they started. So even if a card (say the Ace of Spades) is on top of the deck when you start, it is equally likely to be in any of the 52 possible positions at the end of the shuffle. In other words, we want the positions of the cards in the deck to be uniformly randomly distributed by the shuffle.
+
+In this project you will use a data structure (either queue or linked list is recommended) to simulate shuffling a deck of cards. You will implement a simple algorithm that models/simulates a real shuffle. Then you will use this code to try to answer the question: How many times do I need to riffle the cards to get them well shuffled?
+
+OpenFrameworks
+--------------
+
+This project uses openFrameworks to help visualize the results. You should expect that it will take you several days to get openFrameworks installed and working!
+
+You can download openFrameworks from http://openframeworks.cc
+
+For Windows, I recommend downloading the version for Visual Studio 10, and working with Visual C++ Express 10. For Mac, I recommend using XCode.
+
+Requirements
+------------
+
+1. Implement the "shuffle" function
+2. If your shuffle consists of separate steps (for example, most people will have a "cut" step and a "merge" step) implement those as separate functions
+3. Try different values for the `SHUFFLES_PER_EXP` constant, and determine how many shuffles are needed to get a good result
+4. Answer the questions below
+5. Create and post a portfolio video, as described below
+
+Questions
+=========
+
+#### 1. Which type of shuffle did you choose? If it wasn't one of the four that I listed, please also provide me with a link to a video or text description of the shuffle you implemented.
+
+TODO
+
+#### 2. Explain, in English, the steps of your shuffling algorithm.
+
+TODO
+
+#### 3. Does your algorithm reasonably simulate the actual physical process of shuffling? Explain your reasoning in a short paragraph.
+
+TODO
+
+#### 4. Do you use randomness in your algorithm (you probably *should*)? Explain how, and what random event it corresponds to in real life.
+
+TODO
+
+#### 5. With your shuffle, how many times does it need to be repeated in order to give a random shuffle? Be sure to do several hundred thousand experiments.
+
+TODO
+
+Portfolio Video
+=========
+
+Explain your code, as you would to a boss or colleague in the workplace. You will most likely want to use a screen-capture software. You should, at minimum, do the following:
+
+1. Show your program running with 2-3 different values of `SHUFFLES_PER_EXP` to show how it affects your results.
+2. Show your shuffle code, briefly explaining what each function that you wrote is meant to do. You do NOT need to explain any of the provided code, unless you made some meaningful change you want to describe.
+3. If something is not working (or if you aren't sure), explain that part carefully.
+4. Explain which data structure you used to represent decks of cards (you might have used your ArrayQueue, your linked list, or something else), and why you chose it.
+5. As you worked through the project, did you discover that your shuffle wasn't as random as you expected? What did you do to improve your shuffle algorithm? What was wrong with it?
+
+The video should certainly be less than 2 minutes long. I (or the grading assistant) ought to be able to grade your program based solely on your video, so be sure that we can see your code style, and can accurately assess what works, or doesn't work, in your program. The "Questions" above might also be things you want to talk about in your video: The video should be able to be understood even by someone that isn't in the class, and hasn't read your question answers.
+
+#### 1. Give the link to your portfolio video on YouTube.
+
+TODO
