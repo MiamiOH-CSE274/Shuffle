@@ -28,6 +28,8 @@ You can download openFrameworks from http://openframeworks.cc
 
 For Windows, I recommend downloading the version for Visual Studio 10, and working with Visual C++ Express 10. For Mac, I recommend using XCode.
 
+The best way to create an openFrameworks project is to start by cloning the project from github. Then go to the apps/myApps/ folder in your openFrameworks folder, and copy all the files from emptyExample project, *except for src*, into your repo. So you will use the src folder from github, everything else from openFrameworks. 
+
 Requirements
 ------------
 
