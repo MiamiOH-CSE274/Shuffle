@@ -1,3 +1,6 @@
+Author
+==========
+Bo Brinkman, brinkmwj
 Shuffle
 =======
 
