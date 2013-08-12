@@ -41,6 +41,16 @@ Requirements
 4. Answer the questions below
 5. Create and post a portfolio video, as described below
 
+Bonus requirements
+--------
+These are optional, but can be worth bonus points if you come up with something interesting.
+
+1. Can you design your shuffle so that it is:
+ 1. Realistic (corresponds to something you can really do in real life)
+ 2. NOT really random
+ 3. Fools the Chi-square test, and also the visual inspection
+2. How would you design a statistical test that proves that your shuffle isn't random? (discuss this in your portfolio video)
+
 Questions
 =========
 
