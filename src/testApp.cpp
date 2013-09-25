@@ -1,5 +1,4 @@
 #include "testApp.h"
-#include "ArrayQueue.h"
 
 /* READ THIS FIRST!
  *
