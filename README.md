@@ -1,3 +1,6 @@
+Author
+==========
+"Monnin, Sebastian", monninse
 Shuffle
 =======
 
