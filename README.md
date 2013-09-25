@@ -1,3 +1,6 @@
+Author
+==========
+"Gardner, Daniel", gardnedn
 Shuffle
 =======
 
