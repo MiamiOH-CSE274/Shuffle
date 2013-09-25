@@ -1,3 +1,6 @@
+Author
+==========
+"Turner, Chace", turnerce
 Shuffle
 =======
 
