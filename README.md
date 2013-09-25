@@ -1,3 +1,6 @@
+Author
+==========
+"Zirkle, Andrew", zirkleac
 Shuffle
 =======
 
