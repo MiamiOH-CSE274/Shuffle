@@ -1,3 +1,6 @@
+Author
+==========
+"Contini, Nick", continnd
 Shuffle
 =======
 
