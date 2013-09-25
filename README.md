@@ -1,3 +1,6 @@
+Author
+==========
+"Hiler, Rodney", hilerrw
 Shuffle
 =======
 
