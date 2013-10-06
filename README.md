@@ -59,11 +59,11 @@ Questions
 
 #### 1. Which type of shuffle did you choose? If it wasn't one of the four that I listed, please also provide me with a link to a video or text description of the shuffle you implemented.
 
-TODO
+I chose Hindu shuffle. 
 
 #### 2. Explain, in English, the steps of your shuffling algorithm.
 
-TODO
+First, place all 52 cards into the ArrayQueue. After that, I start to remove top chunk off the ArrayQueue and place them into the cards array. The number of cards in my top chunk is represented by a random number between 1 to 20. After I removed the first top chunk, I keep doing the same process to the remaining cards on the ArrayQueue until the Queue is empty. 
 
 #### 3. Does your algorithm reasonably simulate the actual physical process of shuffling? Explain your reasoning in a short paragraph.
 
