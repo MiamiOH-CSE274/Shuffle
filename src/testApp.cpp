@@ -1,5 +1,5 @@
 #include "testApp.h"
-
+#include "ArrayQueue.h"
 /* READ THIS FIRST!
  *
  * Before you do any development, you will need to tell the IDE where the openFrameworks libraries are installed.
@@ -17,7 +17,7 @@
 // Bigger numbers make the program much faster
 #define EXPS_PER_UPDATE 2
 //How many times should I call shuffle before measuring the result?
-#define SHUFFLES_PER_EXP 1
+#define SHUFFLES_PER_EXP 20
 
 //--------------------------------------------------------------
 void testApp::setup(){
@@ -150,9 +150,30 @@ void testApp::doRandExperiment(){
 }
 
 void shuffle(unsigned int cards[], unsigned int len){
-    //TODO Replace this with your own function that simulates the shuffling of a deck
+     //TODO Replace this with your own function that simulates the shuffling of a deck
     // of cards
-    randomize(cards,len);
+    //randomize(cards,len);
+
+	ArrayQueue<unsigned int> myQ;
+
+	for(unsigned int i =0; i<len; i++){
+		myQ.add(cards[i]);
+	}
+
+	while(len>0){
+		unsigned int topChunk = rand()%(20) + 1;
+		if(topChunk>len){
+			topChunk = len;
+		}
+		len = len - topChunk;
+
+		unsigned int k = 51;
+		for(unsigned int a =0; a<topChunk; a++){
+			unsigned int b = k - len;
+			cards[b]=myQ.remove();
+			k--;
+		}
+	}
 }
 
 void testApp::doShuffleExperiment(int numShuffles){
