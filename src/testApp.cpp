@@ -154,59 +154,35 @@ void shuffle(unsigned int cards[], unsigned int len){
     // of cards
     //randomize(cards,len);
 
-		// add all the cards into the ArrayQueue
+	// add all the cards into the ArrayQueue
 	ArrayQueue<unsigned int> myQ;
 	for(unsigned int i =0; i<len; i++){
 		myQ.add(cards[i]);
 	}
-	
 
 	//Doing the Hindu Shuffle
 	while(len>0){
-
-		// With hendu shuffle, I grab a bottome chunk of cards. I then
-		//place the top chunk of cards to the bottom of the cards array. 
-
-		// The number of cards in the top chunk is represented by a 
-		// random number between 1 and 20. Essentially, the more random
-		// the top chunk, the more random the shuffle. 
 		unsigned int topChunk = rand()%(20) + 1;
-
 		// when the random number generated is greater than the number 
 		// of cards left in the ArrayQueue, the number of top chunk will
-		// be whatever left in the ArrayQueue. 
+		// be whatever number of cards left in the ArrayQueue. 
 		if(topChunk>len){
 			topChunk = len;
 		}
-		
-		// redunce the number of cards in the ArrayQueue. 
+		// reduce the number of cards in the ArrayQueue. 
 		len = len - topChunk;
-
-		// used to located the appropriate location of cards in the 
-		// array of cards. 
 		unsigned int k = 51;
 
-		// This loop is removing cards from the ArrayQueue and place
-		// then into the array of cards. Note, the top chunk of cards
-		// are not placed in the array of cards in reverse order. Instead,
-		// I place the top chunk at their appropriate order, as if I am 
-		// grabing the whole top chunk of cards and place them directly 
-		// into the array of cards. 
-
-		// the variable b is the appropriate location of each card in the array
-		// of cards.for example, if I have 5 cards in my top chunk. 1,2,3,4, and 5 cards. 
-		//The top card is number 1, the second top card is numebr 2, and so on. 
-		//if I want to place them into the array of cards
-		//as if I am grabing the whole top chunk and place the chunk into the array, I need to keep
-		// their relative location the same in the array of cards. 
-		//so, if the array is empty now, and I want to put the topchunk on the 
-		// bottom of the array. then the top card (1) will be placed at location 
-		// 51- (52-5)= 4. Where 51 is the value of K, which is the total location in the array of cards.
-		//52-5 is the value of len left in the ArrayQueue, 
-		//and 4 is the appropriate location for the top card. 
-		//So, my top card is placed at 4, and my second top card is placed at 3, and so on. This way,
-		// The top chunk cards' reletive location is still the same. That is, the original top card
-		// is still on top of the original second top card. 
+		// remove top chunk of cards off the myQ and place them into the array of cards
+		// while keeping the relative location of the cards in the top chunk the 
+		// same in the array of cards. For exmaple, if I grab a top chunk of 5 cards fromt myQ. 
+		// card 1 is on the very top, card 2 is next, card 3 is next, card 4 is next, and card 5 is next. 
+		// these 5 cards have a relative location with each other: that is, card 1 is on top of card 2,
+		//and card 2 is on top of card 3, and so on. 
+		// when I am placing these five cards into the array of cards, the card 1 should be located at 
+		// 51-(52-5)=4. Location 4 in the array. and card 2 should be located at location 3, and so on. 
+		// this way, the original card 1 is still on top of the original card 2. The original card 2 is 
+		// still on top of original card3. 
 		for(unsigned int a =0; a<topChunk; a++){
 			unsigned int b = k-len;
 			cards[b]=myQ.remove();
