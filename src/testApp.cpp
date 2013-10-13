@@ -162,7 +162,8 @@ void shuffle(unsigned int cards[], unsigned int len){
         cards[len-i] = cards[which];
         cards[which] = t;
     }*/
-
+	//LinkedList<int> targ;
+	
 	LinkedList<int> list;
 	LinkedList<int> target;
 	/*for (int e = 0; e < len; e++){
@@ -214,11 +215,12 @@ void shuffle(unsigned int cards[], unsigned int len){
 	//}
 	//list.add(len - 1, temp);
 	//std::cout << std::endl;
+	
 	for (int k = 0; k < len/2; k++){
 		cards[k] = target.get(k);
 		std::cout << "CARDS" << cards[k];
 		}
-		/*
+	/*
 	int temp = cards[0];
 	for (int i = 0; i < len; i++){
 		cards[i] = cards[i+1];
