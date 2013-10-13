@@ -1,4 +1,6 @@
 #include "testApp.h"
+#include "LinkedList.h"
+#include <iostream>
 
 /* READ THIS FIRST!
  *
@@ -152,7 +154,78 @@ void testApp::doRandExperiment(){
 void shuffle(unsigned int cards[], unsigned int len){
     //TODO Replace this with your own function that simulates the shuffling of a deck
     // of cards
-    randomize(cards,len);
+    //randomize(cards,len);
+	 /*for(int i=1; i<len; i++){
+        unsigned int t = cards[len-i];
+        unsigned int which = rand()%(len-i+1);
+        
+        cards[len-i] = cards[which];
+        cards[which] = t;
+    }*/
+
+	LinkedList<int> list;
+	LinkedList<int> target;
+	/*for (int e = 0; e < len; e++){
+		std::cout << cards[e];
+	}*/
+	target.add(0,cards[len-1]);
+	std::cout << target.get(0);
+	for (int j = 0; j < len-1; j++){
+		list.add(j,cards[j]);
+		std::cout << list.get(j);
+	}
+		std::cout << std::endl;
+	
+	int targetSize = 1;
+	int listSize = list.size();
+	for (int f = 0; f < 51; f++){
+		int rando = rand()%(listSize);
+		std::cout << rando << std::endl;
+
+		int rando2 = rand()%(targetSize);
+		std::cout << rando2 << std::endl;
+		list.splice(rando, 1, target, rando2);
+
+		//target.add(rando2, list.get(rando));
+		//list.remove(rando);
+		listSize--;
+		targetSize++;
+	}
+	//list.splice(5, 0, target, 3);
+
+	//for (int f = 0; f < 3; f++){
+		//list.splice(0, f, target, f);
+		//for (int p = 0; p < 5; p++){
+			//int randomNum = rand()%(len-1);
+			//int randomNum2 = rand()%(len-1);
+			//list.splice(2, 1, target, 5);
+			//list.splice(randomNum, 1, target, randomNum2);
+			//list.splice(rand()%(len-1), rand()%(len-p+1), target, rand()%(len-p+1));
+			//list.splice(list.size()-p, p, target, p);
+			//target.splice(p, 4, list, p);
+	//	}
+	//}
+	
+	//for (int j = 0; j < len/2; j++){
+		//list.add(j,list.get(j+1));
+		
+		//list.splice(j, len/2, target, j);
+		//target.remove(len/2);
+	//}
+	//list.add(len - 1, temp);
+	//std::cout << std::endl;
+	for (int k = 0; k < len/2; k++){
+		cards[k] = target.get(k);
+		std::cout << "CARDS" << cards[k];
+		}
+		/*
+	int temp = cards[0];
+	for (int i = 0; i < len; i++){
+		cards[i] = cards[i+1];
+		}
+	cards[len-1] = temp;*/
+	
+	
 }
 
 void testApp::doShuffleExperiment(int numShuffles){
