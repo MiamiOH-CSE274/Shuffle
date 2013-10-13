@@ -152,25 +152,13 @@ void testApp::doRandExperiment(){
 }
 
 void shuffle(unsigned int cards[], unsigned int len){
-    //TODO Replace this with your own function that simulates the shuffling of a deck
-    // of cards
-    //randomize(cards,len);
-	 /*for(int i=1; i<len; i++){
-        unsigned int t = cards[len-i];
-        unsigned int which = rand()%(len-i+1);
-        
-        cards[len-i] = cards[which];
-        cards[which] = t;
-    }*/
-	//LinkedList<int> targ;
-	
-	LinkedList<int> list;
+   	LinkedList<int> list;
 	LinkedList<int> target;
 	
-	target.add(0,cards[len-1]);
+	target.add(0,cards[len]);
 	//std::cout << target.get(0);
 	
-	for (int j = 0; j < len-1; j++){
+	for (int j = 0; j < len; j++){
 		list.add(j,cards[j]);
 	//	std::cout << list.get(j);
 	}
@@ -178,7 +166,7 @@ void shuffle(unsigned int cards[], unsigned int len){
 	
 	int targetSize = 1;
 	int listSize = list.size();
-	for (int f = 0; f < 51; f++){
+	for (int f = 0; f < 52; f++){
 		int rando = rand()%(listSize);
 		std::cout << rando << std::endl;
 
