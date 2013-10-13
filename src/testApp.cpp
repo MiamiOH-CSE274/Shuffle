@@ -166,14 +166,13 @@ void shuffle(unsigned int cards[], unsigned int len){
 	
 	LinkedList<int> list;
 	LinkedList<int> target;
-	/*for (int e = 0; e < len; e++){
-		std::cout << cards[e];
-	}*/
+	
 	target.add(0,cards[len-1]);
-	std::cout << target.get(0);
+	//std::cout << target.get(0);
+	
 	for (int j = 0; j < len-1; j++){
 		list.add(j,cards[j]);
-		std::cout << list.get(j);
+	//	std::cout << list.get(j);
 	}
 		std::cout << std::endl;
 	
@@ -190,7 +189,7 @@ void shuffle(unsigned int cards[], unsigned int len){
 		//target.add(rando2, list.get(rando));
 		//list.remove(rando);
 		listSize--;
-		targetSize++;
+		//targetSize++;
 	}
 	//list.splice(5, 0, target, 3);
 
@@ -216,7 +215,7 @@ void shuffle(unsigned int cards[], unsigned int len){
 	//list.add(len - 1, temp);
 	//std::cout << std::endl;
 	
-	for (int k = 0; k < len/2; k++){
+	for (int k = 0; k < len; k++){
 		cards[k] = target.get(k);
 		std::cout << "CARDS" << cards[k];
 		}
