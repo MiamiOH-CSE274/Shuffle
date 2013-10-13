@@ -19,21 +19,21 @@ class LinkedList : public List <T> {
 
   //Get the value at index i, and return it.
   // If list does not contain i items, through a string exception
-  virtual T get(unsigned long i);
+  T get(unsigned long i);
 
   //Set the value at index i to x
   // If list does not contain i items, through a string exception
-  virtual void set(unsigned long i, T x);
+  void set(unsigned long i, T x);
 
   //Add a new item, x, at position i. All items that were originally
   // at position i or higher get moved forward 1 to make room.
   // If list does not contain i items, through a string exception
-  virtual void add(unsigned long i, T x);
+  void add(unsigned long i, T x);
 
   //Remove the item at position i. All items that were originally
   // at position i+1 or higher get moved backwards 1 to fill the gap.
   // If list does not contain i items, through a string exception
-  virtual void remove(unsigned long i);
+  void remove(unsigned long i);
 
   //Optional, but may be useful in the Shuffle project
   //Remove len items, starting with index i, and insert into target list
@@ -45,7 +45,7 @@ class LinkedList : public List <T> {
   //  instead of add/remove, to do the modification. Learning to do list  
   //  manipulation is the point of this exercise.  
 
-  virtual void splice(unsigned long i, unsigned long len, LinkedList<T>& target, unsigned long t);
+  void splice(unsigned long i, unsigned long len, LinkedList<T>& target, unsigned long t);
 
   //Initialize all private member variables.
   // Be sure to create the dummy node using "new"
