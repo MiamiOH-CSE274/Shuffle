@@ -15,9 +15,9 @@
 
 //How many experiments should we do between each re-draw of the screen?
 // Bigger numbers make the program much faster
-#define EXPS_PER_UPDATE 200
+#define EXPS_PER_UPDATE 20
 //How many times should I call shuffle before measuring the result?
-#define SHUFFLES_PER_EXP 1
+#define SHUFFLES_PER_EXP 50
 
 //--------------------------------------------------------------
 void testApp::setup(){
@@ -152,10 +152,10 @@ void hindu(unsigned int cards[], unsigned int len){
 	if(rand()%10!=0){
 	for(int i=0;i<100;i++){
 		unsigned int sect=rand()%(len);
-		unsigned int numItems=rand()%(3);
+		unsigned int numItems=rand()%(5);
 		unsigned int section[5];
 		unsigned int sec2=1+ rand()%(len-1);
-		unsigned int remo[3];
+		unsigned int remo[5];
 		int k=0;
 		if(sect==0){
 			for(int j=0;j<numItems;j++)
