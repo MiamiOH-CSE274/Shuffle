@@ -56,29 +56,29 @@ Questions
 
 #### 1. Which type of shuffle did you choose? If it wasn't one of the four that I listed, please also provide me with a link to a video or text description of the shuffle you implemented.
 
-TODO
+I picked the hindu.
 
 #### 2. Explain, in English, the steps of your shuffling algorithm.
 
-TODO
+My shuffle takes two random parts of the deck, with an amount of cards between 1 and 5, and swaps them, with a 1 in 10 chance of doing nothing on any particular shuffle.
 
 #### 3. Does your algorithm reasonably simulate the actual physical process of shuffling? Explain your reasoning in a short paragraph.
 
-TODO
+Very unlikely that anyone takes random parts of the deck and swaps them meticulously, it would be more realistic to pull randomly and place that section at the front of the deck but that required an amount of loops to move each section of cards back as the section got moved up.
 
 #### 4. Do you use randomness in your algorithm (you probably *should*)? Explain how, and what random event it corresponds to in real life.
 
-TODO
+Yes, the program picks two sections of the deck to randomly move around, and then picks a random amount to move. The amount of cards able to be moved can be changed and will affect the randomness of the shuffle (17 seem to be best)
 
 #### 5. With your shuffle, how many times does it need to be repeated in order to give a random shuffle? Be sure to do several hundred thousand experiments.
 
-TODO
+It needs to be at least 50 given a card grab of 5 but a larger number of cards can give a smaller amount of required shuffles (25 works for 17)
 
 Portfolio Video
 =========
 
 Explain your code, as you would to a boss or colleague in the workplace. You will most likely want to use a screen-capture software. You should, at minimum, do the following:
-
++
 1. Show your program running with 2-3 different values of `SHUFFLES_PER_EXP` to show how it affects your results.
 2. Show your shuffle code, briefly explaining what each function that you wrote is meant to do. You do NOT need to explain any of the provided code, unless you made some meaningful change you want to describe.
 3. If something is not working (or if you aren't sure), explain that part carefully.
@@ -89,4 +89,4 @@ The video should certainly be less than 2 minutes long. I (or the grading assist
 
 #### 1. Give the link to your portfolio video on YouTube.
 
-TODO
+http://www.youtube.com/watch?v=b5AJUPp6vYk
