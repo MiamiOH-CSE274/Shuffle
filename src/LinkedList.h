@@ -47,6 +47,7 @@ class LinkedList : public List <T> {
 
   void splice(unsigned long i, unsigned long len, LinkedList<T>& target, unsigned long t);
 
+	
   //Initialize all private member variables.
   // Be sure to create the dummy node using "new"
   LinkedList();
