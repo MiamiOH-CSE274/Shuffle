@@ -17,7 +17,7 @@
 // Bigger numbers make the program much faster
 #define EXPS_PER_UPDATE 2
 //How many times should I call shuffle before measuring the result?
-#define SHUFFLES_PER_EXP 1
+#define SHUFFLES_PER_EXP 32
 
 //--------------------------------------------------------------
 void testApp::setup(){
@@ -152,7 +152,40 @@ void testApp::doRandExperiment(){
 void shuffle(unsigned int cards[], unsigned int len){
     //TODO Replace this with your own function that simulates the shuffling of a deck
     // of cards
-    randomize(cards,len);
+     LinkedList<int> deck;
+  
+  for(int i=0; i<52; i++) {
+    deck.add(i, cards[i]);
+  }
+  LinkedList<int> secondDeck;
+  int start = rand()%27;
+  deck.splice(start,26,deck,0);
+  int i=0;
+  while(deck.size()>0 && secondDeck.size()>0){
+    if(rand()%2==1){
+      cards[i]=deck.get(deck.size()-1);
+      deck.remove(deck.size()-1);
+      i++;
+    }
+    else{
+      cards[i]=secondDeck.get(secondDeck.size()-1);
+      secondDeck.remove(secondDeck.size()-1);
+      i++;
+    }
+  }
+  
+  while(secondDeck.size()>0){
+      cards[i]=secondDeck.get(secondDeck.size()-1);
+      secondDeck.remove(secondDeck.size()-1);
+      i++;
+  }
+  
+  while(deck.size()>0){
+    int cardToAdd=rand()%deck.size();
+      cards[i]=deck.get(deck.size()-1);
+      deck.remove(deck.size()-1);
+      i++;
+  }
 }
 
 void testApp::doShuffleExperiment(int numShuffles){
