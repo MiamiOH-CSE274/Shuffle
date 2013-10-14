@@ -85,8 +85,6 @@ when shuffling.
 Yes. I used rand() to generate a random size of a deck when I am trying to separate a whole deck of card into two decks. Because you cannot always divide a whole deck of card into exact half during the actual physical process of shuffling.
 
 
-TODO
-
 #### 5. With your shuffle, how many times does it need to be repeated in order to give a random shuffle? Be sure to do several hundred thousand experiments.
 
 I did 50 times and the P-value looked positive.
