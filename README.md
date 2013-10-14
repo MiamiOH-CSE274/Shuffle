@@ -81,6 +81,7 @@ The random event this corresponds to in real life is the dealer placing the card
 #### 5. With your shuffle, how many times does it need to be repeated in order to give a random shuffle? Be sure to do several hundred thousand experiments.
 
 I have #define EXPS_PER_UPDATE 1 and #define SHUFFLES_PER_EXP 1 and it took about 100 experiments before p < 100%.
+It took about 
 
 Portfolio Video
 =========
@@ -97,4 +98,4 @@ The video should certainly be less than 2 minutes long. I (or the grading assist
 
 #### 1. Give the link to your portfolio video on YouTube.
 
-TODO
+http://www.youtube.com/watch?v=4i771yN86u0&feature=youtu.be
