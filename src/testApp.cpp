@@ -19,7 +19,7 @@
 // Bigger numbers make the program much faster
 #define EXPS_PER_UPDATE 2
 //How many times should I call shuffle before measuring the result?
-#define SHUFFLES_PER_EXP 1
+#define SHUFFLES_PER_EXP 1000
 
 //--------------------------------------------------------------
 void testApp::setup(){
@@ -163,7 +163,7 @@ void shuffle(unsigned int cards[], unsigned int len){
 	for (int j = 0; j < len; j++){
 		list.add(j,cards[j]);
 	}
-
+	
 	// Get the sizes of both LinkedLists	
 	int targetSize = 1;
 	int listSize = list.size();
@@ -171,18 +171,17 @@ void shuffle(unsigned int cards[], unsigned int len){
 	// Shuffle!
 	for (int f = 0; f < 52; f++){
 
-		// Pick random index in both LinkedLists
-		int rando = rand()%(listSize);
+		// Pick random index in second LinkedList
 		int rando2 = rand()%(targetSize);
-
+		
 		// Splice the first LinkedList at the random index
 		// and remove one card and insert into the second 
 		// LinkedList at the random index
-		list.splice(rando, 1, target, rando2);
+		list.splice(0, 1, target, rando2);
 
 		// Update LinkedList sizes
 		listSize--;
-		targetSize++;
+		targetSize++;	
 	}
 	
 	// Add shuffled cards back to card array
