@@ -66,13 +66,13 @@ Only to make this shuffle more random instead of placing the next card on the bo
 
 #### 2. Explain, in English, the steps of your shuffling algorithm.
 The steps of my shuffling alogrithm are:
-1. Take the last card from the deck and place it by itself into the shuffled deck
-2. Take the next card from the top of the deck and placed the card on top or behind the one card in the shuffled deck
-3. Take the next card from the top of the deck and randomly place the card into the shuffled deck
-4. Repeat Step 3 until all the cards from the main deck are in the shuffled deck
+1. Take the last card from the main deck and place it by itself into the 'shuffled deck'
+2. Take the next card from the top of the main deck and placed the card on top or behind the one card in the 'shuffled deck'
+3. Take the next card from the top of the main deck and randomly place the card into the 'shuffled deck'
+4. Repeat Step 3 until all the cards from the main deck are in the 'shuffled deck'
 
 #### 3. Does your algorithm reasonably simulate the actual physical process of shuffling? Explain your reasoning in a short paragraph.
-My algorithm does not resonably simulate the actual physical process of shuffling. A card dealer will never the next card one at a time and place it into another deck continuing this until all the cards are in the shuffled deck. My shuffling algorithm takes longer in real life than other shuffling algorithms such as Riffling. Also my shuffling algorithm is unprofessional for a card dealer to use.
+My algorithm does not resonably simulate the actual physical process of shuffling. A card dealer will never take one card at a time and place it into another deck continuing this until all the cards are in the shuffled deck. My shuffling algorithm takes longer in real life than other shuffling algorithms such as Riffling. Also my shuffling algorithm is unprofessional for a card dealer to use.
 
 #### 4. Do you use randomness in your algorithm (you probably *should*)? Explain how, and what random event it corresponds to in real life.
 Yes I use randomness in my algorithm when I pick an index in the shuffled deck to place the next card into.  
@@ -80,8 +80,8 @@ The random event this corresponds to in real life is the dealer placing the card
 
 #### 5. With your shuffle, how many times does it need to be repeated in order to give a random shuffle? Be sure to do several hundred thousand experiments.
 
-I have #define EXPS_PER_UPDATE 1 and #define SHUFFLES_PER_EXP 1 and it took about 100 experiments before p < 100%.
-It took about 
+I have #define EXPS_PER_UPDATE 1 and #define SHUFFLES_PER_EXP 1 and it took about 3600 experiments before p < 100%.
+
 
 Portfolio Video
 =========
@@ -98,4 +98,4 @@ The video should certainly be less than 2 minutes long. I (or the grading assist
 
 #### 1. Give the link to your portfolio video on YouTube.
 
-http://www.youtube.com/watch?v=4i771yN86u0&feature=youtu.be
+http://www.youtube.com/watch?v=k2-OiOHaE7A&feature=youtu.be
