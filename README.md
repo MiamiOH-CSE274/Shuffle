@@ -59,11 +59,17 @@ Questions
 
 #### 1. Which type of shuffle did you choose? If it wasn't one of the four that I listed, please also provide me with a link to a video or text description of the shuffle you implemented.
 
-TODO
+The type of shuffle I choose was the Mongean Shuffle.
+The link: http://en.wikipedia.org/wiki/Shuffling under Mongean Shuffle provides an explanation of the Shuffle.
+Only to make this shuffle more random instead of placing the next card on the bottom or top, I placed it randomly into the deck of cards.
+
 
 #### 2. Explain, in English, the steps of your shuffling algorithm.
-
-TODO
+The steps of my shuffling alogrithm are:
+1. Take the last card from the deck and place it by itself into the shuffled deck
+2. Randomly pick a card from the main deck and placed the card on top or behind the one card in the shuffled deck
+3. Randomly take a card from the main deck and randomly place the card into the shuffled deck
+4. Repeat Step 3 until all the cards from the main deck are in the shuffled deck
 
 #### 3. Does your algorithm reasonably simulate the actual physical process of shuffling? Explain your reasoning in a short paragraph.
 
