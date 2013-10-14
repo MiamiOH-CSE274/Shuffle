@@ -158,8 +158,8 @@ void shuffle(unsigned int cards[], unsigned int len){
     deck.add(i, cards[i]);
   }
   LinkedList<int> secondDeck;
-  int start = rand()%27;
-  deck.splice(start,26,deck,0);
+  int length = rand()%26+13;
+  deck.splice(0,length,secondDeck,0);
   int i=0;
   while(deck.size()>0 && secondDeck.size()>0){
     if(rand()%2==1){
