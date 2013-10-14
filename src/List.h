@@ -50,5 +50,7 @@ class List {
   //Optional, but may be useful in the Shuffle project
   //Remove len items, starting with index i, and insert into target list
   // at position t. 
-  void splice(unsigned long i, unsigned long len, List<T>& target, unsigned long t) ;
+  void splice(unsigned long i, unsigned long len, List<T>& target, unsigned long t);
+
+
 };
