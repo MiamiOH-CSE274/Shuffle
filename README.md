@@ -87,7 +87,7 @@ Yes. I used rand() to generate a random size of a deck when I am trying to separ
 
 #### 5. With your shuffle, how many times does it need to be repeated in order to give a random shuffle? Be sure to do several hundred thousand experiments.
 
-I did 50 times and the P-value looked positive.
+I did 12 times and the P-value looked positive.
 
 Portfolio Video
 =========
