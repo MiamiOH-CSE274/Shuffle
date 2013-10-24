@@ -59,23 +59,23 @@ Questions
 
 #### 1. Which type of shuffle did you choose? If it wasn't one of the four that I listed, please also provide me with a link to a video or text description of the shuffle you implemented.
 
-TODO
+Riffle
 
 #### 2. Explain, in English, the steps of your shuffling algorithm.
 
-TODO
+Split (not necessarily exactly in half), then randomly choose a deck to place a card from the bottom of, and add it to the shuffled deck.
 
 #### 3. Does your algorithm reasonably simulate the actual physical process of shuffling? Explain your reasoning in a short paragraph.
 
-TODO
+Yes. When doing a riffle shuffle, you fist split the deck. Since a human doesnt necessarily split the deck exactly in half, I approximated that the split would occur randomly at a point between n/4 to 3n/4, n being the number of cards. Then, when the cards slip from your fingers, the average shuffler cannot always control how man cards slip from each deck at one time, hence I made the next card added to the deck random. When one deck runs out of cards, the rest of the other deck get added to the array.
 
 #### 4. Do you use randomness in your algorithm (you probably *should*)? Explain how, and what random event it corresponds to in real life.
 
-TODO
+I use it to split the deck, as well as merge the two decks.
 
 #### 5. With your shuffle, how many times does it need to be repeated in order to give a random shuffle? Be sure to do several hundred thousand experiments.
 
-TODO
+16 appears to be the number of shuffles per experiment that results in a stable probability of randomness from the chi square test.
 
 Portfolio Video
 =========
