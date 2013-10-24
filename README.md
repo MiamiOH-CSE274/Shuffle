@@ -59,23 +59,29 @@ Questions
 
 #### 1. Which type of shuffle did you choose? If it wasn't one of the four that I listed, please also provide me with a link to a video or text description of the shuffle you implemented.
 
-TODO
+The type of shuffle I choose was the Mongean Shuffle.
+The link: http://en.wikipedia.org/wiki/Shuffling under Mongean Shuffle provides an explanation of the Shuffle.
+Only to make this shuffle more random instead of placing the next card on the bottom or top, I place it randomly into the deck of cards.
+
 
 #### 2. Explain, in English, the steps of your shuffling algorithm.
-
-TODO
+The steps of my shuffling alogrithm are:
+1. Take the last card from the main deck and place it by itself into the 'shuffled deck'
+2. Take the next card from the top of the main deck and placed the card on top or behind the one card in the 'shuffled deck'
+3. Take the next card from the top of the main deck and randomly place the card into the 'shuffled deck'
+4. Repeat Step 3 until all the cards from the main deck are in the 'shuffled deck'
 
 #### 3. Does your algorithm reasonably simulate the actual physical process of shuffling? Explain your reasoning in a short paragraph.
-
-TODO
+My algorithm does not resonably simulate the actual physical process of shuffling. A card dealer will never take one card at a time and place it into another deck continuing this until all the cards are in the shuffled deck. My shuffling algorithm takes longer in real life than other shuffling algorithms such as Riffling. Also my shuffling algorithm is unprofessional for a card dealer to use.
 
 #### 4. Do you use randomness in your algorithm (you probably *should*)? Explain how, and what random event it corresponds to in real life.
-
-TODO
+Yes I use randomness in my algorithm when I pick an index in the shuffled deck to place the next card into.  
+The random event this corresponds to in real life is the dealer placing the card into the shuffled deck.
 
 #### 5. With your shuffle, how many times does it need to be repeated in order to give a random shuffle? Be sure to do several hundred thousand experiments.
 
-TODO
+I have #define EXPS_PER_UPDATE 1 and #define SHUFFLES_PER_EXP 1 and it took about 3600 experiments before p < 100%.
+
 
 Portfolio Video
 =========
@@ -92,4 +98,4 @@ The video should certainly be less than 2 minutes long. I (or the grading assist
 
 #### 1. Give the link to your portfolio video on YouTube.
 
-TODO
+http://www.youtube.com/watch?v=k2-OiOHaE7A&feature=youtu.be

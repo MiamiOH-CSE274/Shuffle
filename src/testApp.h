@@ -18,6 +18,7 @@ private:
     double randCounts[52*52];
     
     void drawMatrix(float x, float y, float width, float height, double matrix[], double min, double max);
+	
     
     ofTrueTypeFont arial24;
 };

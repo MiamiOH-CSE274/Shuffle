@@ -1,4 +1,6 @@
 #include "testApp.h"
+#include "LinkedList.h"
+#include <iostream>
 
 /* READ THIS FIRST!
  *
@@ -17,7 +19,7 @@
 // Bigger numbers make the program much faster
 #define EXPS_PER_UPDATE 2
 //How many times should I call shuffle before measuring the result?
-#define SHUFFLES_PER_EXP 1
+#define SHUFFLES_PER_EXP 1000
 
 //--------------------------------------------------------------
 void testApp::setup(){
@@ -150,9 +152,42 @@ void testApp::doRandExperiment(){
 }
 
 void shuffle(unsigned int cards[], unsigned int len){
-    //TODO Replace this with your own function that simulates the shuffling of a deck
-    // of cards
-    randomize(cards,len);
+   	// Create 2 LinkedLists
+	LinkedList<int> list;
+	LinkedList<int> target;
+	
+	// Add the last card to one LinkedList
+	target.add(0,cards[len]);
+	
+	// Add all the other cards to the other LinkedList
+	for (int j = 0; j < len; j++){
+		list.add(j,cards[j]);
+	}
+	
+	// Get the sizes of both LinkedLists	
+	int targetSize = 1;
+	int listSize = list.size();
+
+	// Shuffle!
+	for (int f = 0; f < 52; f++){
+
+		// Pick random index in second LinkedList
+		int rando2 = rand()%(targetSize);
+		
+		// Splice the first LinkedList at the random index
+		// and remove one card and insert into the second 
+		// LinkedList at the random index
+		list.splice(0, 1, target, rando2);
+
+		// Update LinkedList sizes
+		listSize--;
+		targetSize++;	
+	}
+	
+	// Add shuffled cards back to card array
+	for (int k = 0; k < len; k++){
+		cards[k] = target.get(k);
+		}
 }
 
 void testApp::doShuffleExperiment(int numShuffles){
