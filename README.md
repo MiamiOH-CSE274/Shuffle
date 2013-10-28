@@ -59,23 +59,38 @@ Questions
 
 #### 1. Which type of shuffle did you choose? If it wasn't one of the four that I listed, please also provide me with a link to a video or text description of the shuffle you implemented.
 
-TODO
+I used Riffle shuffle.
 
 #### 2. Explain, in English, the steps of your shuffling algorithm.
 
-TODO
+1.Create two array-based Queue(deckOne and deckTwo), because I need to separate a whole deck of card
+into two decks.
+
+2.Using rand() to generate a random size of a deck.
+
+3.Fill out deckOne and deckTwo by using add() method provided in Queue lab.
+
+4.Re-placing the whole deck of card(Doing waterfall). Place first card from 
+deckOne at the bottom, second card from deckTwo at the last but one position, 
+and third card from deckOne at the last but two....and so on.
+
 
 #### 3. Does your algorithm reasonably simulate the actual physical process of shuffling? Explain your reasoning in a short paragraph.
 
-TODO
+1.In my program. I created two array-based Queue to simulate that I will separate a whole deck of card into two decks.
+
+2.Re-placing the whole deck of card is to simulate that I will do waterfall 
+when shuffling.
+
 
 #### 4. Do you use randomness in your algorithm (you probably *should*)? Explain how, and what random event it corresponds to in real life.
 
-TODO
+Yes. I used rand() to generate a random size of a deck when I am trying to separate a whole deck of card into two decks. Because you cannot always divide a whole deck of card into exact half during the actual physical process of shuffling.
+
 
 #### 5. With your shuffle, how many times does it need to be repeated in order to give a random shuffle? Be sure to do several hundred thousand experiments.
 
-TODO
+I did 50 times and the P-value looked positive.
 
 Portfolio Video
 =========
@@ -92,4 +107,6 @@ The video should certainly be less than 2 minutes long. I (or the grading assist
 
 #### 1. Give the link to your portfolio video on YouTube.
 
-TODO
+Below is the link:
+www.youtube.com/watch?v=aIlsFp1rlQs
+
