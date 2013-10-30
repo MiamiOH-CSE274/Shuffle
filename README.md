@@ -61,17 +61,14 @@ I used Riffle shuffle.
 #### 2. Explain, in English, the steps of your shuffling algorithm.
 
 *******************************************************************************
-                 1.I used linked-list as my data structure.
-
-		   2.I did  linkedList<int> deck, and add 52 
+                   1.I used linked-list as my data structure.
+                   2.I did  linkedList<int> deck, and add 52 
 		   cards into deck.
-
-		   3.I did LinkedList<int> newDeck, and then I
+                   3.I did LinkedList<int> newDeck, and then I
 		   used splice() method to choose a card from deck
 		   and insert into a random position in newDeck, until
                    52 cards in deck have been chosen.
-
-		   4.I used get() method from linked-list project to 
+                   4.I used get() method from linked-list project to 
 		   move 52 cards from newDeck back in unsigned int cards[].
 
 ********************************************************************************
