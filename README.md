@@ -63,34 +63,56 @@ I used Riffle shuffle.
 
 #### 2. Explain, in English, the steps of your shuffling algorithm.
 
-1.Create two array-based Queue(deckOne and deckTwo), because I need to separate a whole deck of card
-into two decks.
+*******************************************************************************
+                   
+		   I used linked-list as my data structure.
+                   
+		   I did  linkedList<int> deck, and add 52 
+		   cards into deck.
+                   
+		   I did LinkedList<int> newDeck, and then I
+		   used splice() method to choose a card from deck
+		   and insert into a random position in newDeck, until
+		   52 cards in deck have been chosen.
+                   
+		   I used get() method from linked-list project to 
+		   move 52 cards from newDeck back in unsigned int cards[].
 
-2.Using rand() to generate a random size of a deck.
-
-3.Fill out deckOne and deckTwo by using add() method provided in Queue lab.
-
-4.Re-placing the whole deck of card(Doing waterfall). Place first card from 
-deckOne at the bottom, second card from deckTwo at the last but one position, 
-and third card from deckOne at the last but two....and so on.
-
+********************************************************************************
 
 #### 3. Does your algorithm reasonably simulate the actual physical process of shuffling? Explain your reasoning in a short paragraph.
 
-1.In my program. I created two array-based Queue to simulate that I will separate a whole deck of card into two decks.
+********************************************************************************
+                   
+		   Yes. Because if you use Riffle shuffle, you cut a whole
+		   deck of card into two decks and merge them back into one
+		   deck. The position of each card is possible to change.
 
-2.Re-placing the whole deck of card is to simulate that I will do waterfall 
-when shuffling.
+
+********************************************************************************
 
 
 #### 4. Do you use randomness in your algorithm (you probably *should*)? Explain how, and what random event it corresponds to in real life.
 
-Yes. I used rand() to generate a random size of a deck when I am trying to separate a whole deck of card into two decks. Because you cannot always divide a whole deck of card into exact half during the actual physical process of shuffling.
+********************************************************************************
+                  
+	      Yes. I used rand() to pick a random position to insert a card
+	      into that position. Which is to simulate a Riffle Shuffle process.
+
+
+********************************************************************************
+
 
 
 #### 5. With your shuffle, how many times does it need to be repeated in order to give a random shuffle? Be sure to do several hundred thousand experiments.
 
-I did 50 times and the P-value looked positive.
+********************************************************************************
+            
+	        #define EXPS_PER_UPDATE 2
+	        #define SHUFFLES_PER_EXP 30
+
+
+********************************************************************************
 
 Portfolio Video
 =========
@@ -107,6 +129,5 @@ The video should certainly be less than 2 minutes long. I (or the grading assist
 
 #### 1. Give the link to your portfolio video on YouTube.
 
-Below is the link:
-www.youtube.com/watch?v=aIlsFp1rlQs
+//TODO
 

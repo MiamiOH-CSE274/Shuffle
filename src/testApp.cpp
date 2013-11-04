@@ -1,18 +1,15 @@
 #include "testApp.h"
-
-#include "ArrayQueue.h"
+#include "LinkedList.h"
 #include <ctime>
 #include <cstdlib>
 
 
-
 //How many experiments should we do between each re-draw of the screen?
 //Bigger numbers make the program much faster
-#define EXPS_PER_UPDATE 200
-
+#define EXPS_PER_UPDATE 2
 
 //How many times should I call shuffle before measuring the result?
-#define SHUFFLES_PER_EXP 12
+#define SHUFFLES_PER_EXP 30
 
 //--------------------------------------------------------------
 void testApp::setup(){
@@ -151,55 +148,52 @@ void testApp::doRandExperiment(){
 
 void shuffle(unsigned int cards[], unsigned int len)
 {
-    //TODO Replace this with your own function that simulates the shuffling of a deck
-    // of cards
-
-    ArrayQueue<unsigned int> deckOne;
-    ArrayQueue<unsigned int> deckTwo;
+        //Creating a list to store whole deck of card.
+        LinkedList<int> deck;
 
 
-    unsigned int sizeOfDeckOne = (rand() % 7 + 20);
-
-    unsigned int sizeOfDeckTwo = 52-sizeOfDeckOne;
-
-    for(unsigned int i = len-1;i>0;i--)
-    {
-        if(i>sizeOfDeckOne)
+        for(int i = 0;i<len;i++)
         {
-            deckOne.add(cards[i]);
+          deck.add(i,cards[i]);
+
         }
-        else
+
+        //store the cards after shuffling.
+        LinkedList<int> newDeck;
+
+        //Add the first card into newDeck.
+        unsigned int sacrifice = cards[0];
+
+        //add sacrifice as first node in newDeck.
+        newDeck.add(0,sacrifice);
+
+
+        for(int i = 0;i<len;i++)
         {
-            deckTwo.add(cards[i]);
+            if(i == 0)
+            {
+               //Move a card from deck and append it behind sacrifice.
+               deck.splice(0,1,newDeck,0);
+
+               //Delete sacrifice.
+               newDeck.remove(0);
+            }
+
+            else
+            {
+                int randomIndex = rand() % i;
+
+                //Insert a card into random position into newDeck.
+                deck.splice(0,1,newDeck,randomIndex);
+            }
         }
+
+          for(int i = 0;i<len;i++)
+          {
+              cards[i] = newDeck.get(i);
+
+          }
     }
-
-
-   if(sizeOfDeckOne <= sizeOfDeckTwo)
-    {
-
-    for(unsigned int i =  0;i<sizeOfDeckOne;i++)
-    {
-        cards[len- (i+1)] = deckOne.remove();
-        cards[len- (i+2)] = deckTwo.remove();
-        i++;
-    }
-   }
-   else
-    {
-     for(unsigned int i =  0;i<len;i++)
-     {
-       if(i < sizeOfDeckTwo)
-       {
-        cards[len-(i+1)] = deckTwo.remove();
-        cards[len-(i+2)] = deckOne.remove();
-        i++;
-       }
-       cards[i*2] = deckOne.remove();
-   }
-  }
-}
-
 
 void testApp::doShuffleExperiment(int numShuffles){
     //Initialize a deck of cards
