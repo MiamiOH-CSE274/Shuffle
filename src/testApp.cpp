@@ -151,9 +151,37 @@ void testApp::doRandExperiment(){
 }
 
 void shuffle(unsigned int cards[], unsigned int len){
-    //TODO Replace this with your own function that simulates the shuffling of a deck
-    // of cards
-    randomize(cards,len);
+    LinkedList<int>card;
+
+    //Store all of card into linked list.
+    for(int i = 0;i<len;i++)
+    {
+       card.add(i,cards[i]);
+    }
+
+    LinkedList<int>newCard;
+
+    int i = 0;
+
+    while(card.size()!= 0)
+    {
+        //Pick a card from random position.
+        int pos = rand() % (len-i);
+
+        //Add a card to the new Card.
+        newCard.add(0,card.get(pos));
+
+        //Remove a card from "Card".
+        card.remove( pos );
+
+        i++;
+    }
+
+    for(int i = 0;i<newCard.size();i++)
+    {
+        cards[i] = newCard.get(i);
+    }
+
 }
 
 void testApp::doShuffleExperiment(int numShuffles){
