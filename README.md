@@ -67,16 +67,16 @@ I used Riffle shuffle.
                    
 		   I used linked-list as my data structure.
                    
-		   I did  linkedList<int> deck, and add 52 
-		   cards into deck.
+		   I did  linkedList<int> card, and add 52 
+		   cards into it.
                    
-		   I did LinkedList<int> newDeck, and then I
-		   used splice() method to choose a card from deck
-		   and insert into a random position in newDeck, until
-		   52 cards in deck have been chosen.
-                   
+		   I created another linked-list: linkedlist<int>newCard,
+                   then I picked a card from random position in "card" and
+		   inserted it to "newCard" until "card" is empty.
+
+
 		   I used get() method from linked-list project to 
-		   move 52 cards from newDeck back in unsigned int cards[].
+		   move 52 cards from "newCard" back in unsigned int cards[].
 
 ********************************************************************************
 
@@ -109,7 +109,7 @@ I used Riffle shuffle.
 ********************************************************************************
             
 	        #define EXPS_PER_UPDATE 2
-	        #define SHUFFLES_PER_EXP 30
+	        #define SHUFFLES_PER_EXP 10
 
 
 ********************************************************************************
