@@ -94,6 +94,7 @@ void LinkedList<T>::remove(unsigned long i){
 	w -> prev -> next = w -> next;
 	w -> next -> prev = w -> prev;
 	
+	
 	delete w;
 	numItems--;
 }
