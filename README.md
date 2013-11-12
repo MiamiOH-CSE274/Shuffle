@@ -56,23 +56,60 @@ Questions
 
 #### 1. Which type of shuffle did you choose? If it wasn't one of the four that I listed, please also provide me with a link to a video or text description of the shuffle you implemented.
 
-TODO
+I used Riffle shuffle.
 
 #### 2. Explain, in English, the steps of your shuffling algorithm.
 
-TODO
+*******************************************************************************
+                   
+		   I used linked-list as my data structure.
+                   
+		   I did  linkedList<int> card, and add 52 
+		   cards into it.
+                   
+		   I created another linked-list: linkedlist<int>newCard,
+                   then I picked a card from random position in "card" and
+		   inserted it to "newCard" until "card" is empty.
+
+
+		   I used get() method from linked-list project to 
+		   move 52 cards from "newCard" back in unsigned int cards[].
+
+********************************************************************************
 
 #### 3. Does your algorithm reasonably simulate the actual physical process of shuffling? Explain your reasoning in a short paragraph.
 
-TODO
+********************************************************************************
+                   
+		   Yes. Because if you use Riffle shuffle, you cut a whole
+		   deck of card into two decks and merge them back into one
+		   deck. The position of each card is possible to change.
+
+
+********************************************************************************
+
 
 #### 4. Do you use randomness in your algorithm (you probably *should*)? Explain how, and what random event it corresponds to in real life.
 
-TODO
+********************************************************************************
+                  
+	      Yes. I used rand() to pick a random position to insert a card
+	      into that position. Which is to simulate a Riffle Shuffle process.
+
+
+********************************************************************************
+
+
 
 #### 5. With your shuffle, how many times does it need to be repeated in order to give a random shuffle? Be sure to do several hundred thousand experiments.
 
-TODO
+********************************************************************************
+            
+	        #define EXPS_PER_UPDATE 2
+	        #define SHUFFLES_PER_EXP 10
+
+
+********************************************************************************
 
 Portfolio Video
 =========
@@ -89,4 +126,5 @@ The video should certainly be less than 2 minutes long. I (or the grading assist
 
 #### 1. Give the link to your portfolio video on YouTube.
 
-TODO
+//TODO
+
