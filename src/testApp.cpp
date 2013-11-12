@@ -167,7 +167,7 @@ void shuffle(unsigned int cards[], unsigned int len){
 	// Get the sizes of both LinkedLists	
 	int targetSize = 1;
 	int listSize = list.size();
-
+	int count = 0;
 	
 	// Shuffle!
 	for (int f = 0; f < 52; f++){
@@ -184,7 +184,7 @@ void shuffle(unsigned int cards[], unsigned int len){
 		targetSize++;
 		listSize--;*/
 		
-		// If random is even take from the front of the list
+		// If random is even take from the top of the deck
 		if (random%2 == 0){
 			// If the randomNum is odd take 2 cards from the front of the list
 			if (randomNum%2 != 0) {
@@ -236,6 +236,7 @@ void shuffle(unsigned int cards[], unsigned int len){
 				listSize--;
 			}
 		}	
+		count++;
 	}
 	
 	// Add shuffled cards back to card array
