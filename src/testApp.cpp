@@ -168,76 +168,74 @@ void shuffle(unsigned int cards[], unsigned int len){
 	int targetSize = 1;
 	int listSize = list.size();
 
+	
 	// Shuffle!
 	for (int f = 0; f < 52; f++){
 
-		// Pick random index in second LinkedList
-		int rando = (rand()%2) + 1;
-		//int rando = (rand()%targetSize);
-		//int rando2 = rand()%targetSize;
-	//	std::cout << rando+1 << std::endl;
+		// Pick 2 random numbers to help decide whether to take 2 or 1 cards from the front
+		// or back of first LinkedList(list)
+		int random = rand()%targetSize;
+		int randomNum = rand()%listSize;
 		
-		// Splice the first LinkedList at the random index
+		// OLD METHOD: Splice the first LinkedList at the random index
 		// and remove one card and insert into the second 
 		// LinkedList at the random index
 		/*list.splice(0, 1, target, rando);
 		targetSize++;
 		listSize--;*/
-		//if (f % 2 == 0){
-		int random = rand()%targetSize;
-		//int randomNum = rand()%targetSize;
-
-	if (random%2 == 0){
-		if (random%2 != 0) {
-			list.splice(0, 2, target, 0);
-			targetSize = targetSize + 2;
-			listSize = listSize - 2;
-			f = f + 1;
-			
-		}
-		else {
-			list.splice(0, 1, target, 0);
-			targetSize++;
-			listSize--;
-		}
-	}
-	else {
-		if (random%2 == 0) {
-			list.splice(listSize-2, 2, target, 0);
-			targetSize = targetSize + 2;
-			listSize = listSize - 2;
-			f = f + 1;
-			
-		}
-		else {
-			list.splice(listSize-1, 1, target, 0);
-			targetSize++;
-			listSize--;
-		}
-	}
-
-		/*if (((f+rand())%2) == 0){
-			list.splice(0,2,target,0);
-			listSize = listSize - 2;
-			targetSize = targetSize + 2;	
-			f = f + 1;
-		}
-		else {
-			list.splice(0,1,target,0);
-			listSize = listSize - 1;
-			targetSize = targetSize + 1;
 		
-		}*/
-			//f = f + rando - 1;
-		//}
-	/*	else {
-			list.splice(listSize-1,1,target,0);
-			listSize = listSize - 1;
-			targetSize = targetSize + 1;	
-		}*/
+		// If random is even take from the front of the list
+		if (random%2 == 0){
+			// If the randomNum is odd take 2 cards from the front of the list
+			if (randomNum%2 != 0) {
 
-		// Update LinkedList sizes
-		
+				// Splice the list and take 2 cards from the front of the list
+				// and add these two cards to the front of the target list
+				list.splice(0, 2, target, 0);
+
+				// Update lists sizes
+				targetSize = targetSize + 2;
+				listSize = listSize - 2;
+
+				// Update f because 2 cards were taken not just 1
+				f = f + 1;
+			}
+			// If randomNum is even take 1 card from the front of the list
+			else {
+				// Splice the list and take 1 card from the front and add it to the
+				// front of the target list
+				list.splice(0, 1, target, 0);
+
+				// Update both list sizes
+				targetSize++;
+				listSize--;
+			}	
+		}
+		// If random is odd take cards from the back of the list
+		else {
+			// If randomNum is odd take 2 cards from the back of the list
+			if (randomNum%2 != 0) {
+				// Splice the list and take 2 cards from the back of the list
+				// and add to the front of target list
+				list.splice(listSize-2, 2, target, 0);
+
+				// Update both list sizes
+				targetSize = targetSize + 2;
+				listSize = listSize - 2;
+
+				// Update f since 2 cards were taken
+				f = f + 1;
+			}
+			else {
+				// If randomNum is even take 1 card from the back of the list
+				// and add to the front of the target list
+				list.splice(listSize-1, 1, target, 0);
+
+				// Update both list sizes
+				targetSize++;
+				listSize--;
+			}
+		}	
 	}
 	
 	// Add shuffled cards back to card array
