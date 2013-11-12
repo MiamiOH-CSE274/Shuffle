@@ -1,5 +1,5 @@
 #include "testApp.h"
-
+#include "ArrayQueue.h"
 /* READ THIS FIRST!
  *
  * Before you do any development, you will need to tell the IDE where the openFrameworks libraries are installed.
@@ -17,7 +17,7 @@
 // Bigger numbers make the program much faster
 #define EXPS_PER_UPDATE 2
 //How many times should I call shuffle before measuring the result?
-#define SHUFFLES_PER_EXP 1
+#define SHUFFLES_PER_EXP 20
 
 //--------------------------------------------------------------
 void testApp::setup(){
@@ -150,9 +150,46 @@ void testApp::doRandExperiment(){
 }
 
 void shuffle(unsigned int cards[], unsigned int len){
-    //TODO Replace this with your own function that simulates the shuffling of a deck
+     //TODO Replace this with your own function that simulates the shuffling of a deck
     // of cards
-    randomize(cards,len);
+    //randomize(cards,len);
+
+	// add all the cards into the ArrayQueue
+	ArrayQueue<unsigned int> myQ;
+	for(unsigned int i =0; i<len; i++){
+		myQ.add(cards[i]);
+	}
+
+	//Doing the Hindu Shuffle
+	while(len>0){
+		unsigned int topChunk = rand()%(20) + 1;
+		// when the random number generated is greater than the number 
+		// of cards left in the ArrayQueue, the number of top chunk will
+		// be whatever number of cards left in the ArrayQueue. 
+		if(topChunk>len){
+			topChunk = len;
+		}
+		// reduce the number of cards in the ArrayQueue. 
+		len = len - topChunk;
+		unsigned int k = 51;
+
+		// remove top chunk of cards off the myQ and place them into the array of cards
+		// while keeping the relative location of the cards in the top chunk the 
+		// same in the array of cards. For exmaple, if I grab a top chunk of 5 cards fromt myQ. 
+		// card 1 is on the very top, card 2 is next, card 3 is next, card 4 is next, and card 5 is next. 
+		// these 5 cards have a relative location with each other: that is, card 1 is on top of card 2,
+		//and card 2 is on top of card 3, and so on. 
+		// when I am placing these five cards into the array of cards, the card 1 should be located at 
+		// 51-(52-5)=4. Location 4 in the array. and card 2 should be located at location 3, and so on. 
+		// this way, the original card 1 is still on top of the original card 2. The original card 2 is 
+		// still on top of original card3. 
+		for(unsigned int a =0; a<topChunk; a++){
+			unsigned int b = k-len;
+			cards[b]=myQ.remove();
+			k--;
+		}
+	}
+
 }
 
 void testApp::doShuffleExperiment(int numShuffles){

@@ -59,23 +59,23 @@ Questions
 
 #### 1. Which type of shuffle did you choose? If it wasn't one of the four that I listed, please also provide me with a link to a video or text description of the shuffle you implemented.
 
-TODO
+I chose Hindu shuffle. 
 
 #### 2. Explain, in English, the steps of your shuffling algorithm.
 
-TODO
+First, place all 52 cards into the ArrayQueue. After that, I start to remove top chunk off the ArrayQueue and place them into the cards array. The number of cards in my top chunk is represented by a random number between 1 to 20. After I removed the first top chunk, I keep doing the same process to the remaining cards in the ArrayQueue until the Queue is empty. 
 
 #### 3. Does your algorithm reasonably simulate the actual physical process of shuffling? Explain your reasoning in a short paragraph.
+Yes, I think my algorithm reasonably simulate the actual physical process of shuffling. When I do a Hindu shuffle, I need to grab a bottom chunk. I will then place the top chunk to the bottom. I will keep doing the same process to the remaining cards until the original bottom chunk is empty. 
 
-TODO
 
 #### 4. Do you use randomness in your algorithm (you probably *should*)? Explain how, and what random event it corresponds to in real life.
 
-TODO
+Yes, I use randomness in my algorithm. I use a random number between 1 to 20 to represent the number of cards in the top chunk. In real life, it is hard to grab exactly the same amount of bcards every time, so this randomeness is reasonable. 
 
 #### 5. With your shuffle, how many times does it need to be repeated in order to give a random shuffle? Be sure to do several hundred thousand experiments.
 
-TODO
+With my shuffle, it needs at least 45 times in order to give a very random shuffle
 
 Portfolio Video
 =========
@@ -92,4 +92,4 @@ The video should certainly be less than 2 minutes long. I (or the grading assist
 
 #### 1. Give the link to your portfolio video on YouTube.
 
-TODO
+Please see: http://youtu.be/e998rvGmgE0
