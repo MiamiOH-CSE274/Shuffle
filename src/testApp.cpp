@@ -17,9 +17,9 @@
 
 //How many experiments should we do between each re-draw of the screen?
 // Bigger numbers make the program much faster
-#define EXPS_PER_UPDATE 2
+#define EXPS_PER_UPDATE 20
 //How many times should I call shuffle before measuring the result?
-#define SHUFFLES_PER_EXP 1000
+#define SHUFFLES_PER_EXP 7
 
 //--------------------------------------------------------------
 void testApp::setup(){
@@ -172,16 +172,72 @@ void shuffle(unsigned int cards[], unsigned int len){
 	for (int f = 0; f < 52; f++){
 
 		// Pick random index in second LinkedList
-		int rando2 = rand()%(targetSize);
+		int rando = (rand()%2) + 1;
+		//int rando = (rand()%targetSize);
+		//int rando2 = rand()%targetSize;
+	//	std::cout << rando+1 << std::endl;
 		
 		// Splice the first LinkedList at the random index
 		// and remove one card and insert into the second 
 		// LinkedList at the random index
-		list.splice(0, 1, target, rando2);
+		/*list.splice(0, 1, target, rando);
+		targetSize++;
+		listSize--;*/
+		//if (f % 2 == 0){
+		int random = rand()%targetSize;
+		//int randomNum = rand()%targetSize;
+
+	if (random%2 == 0){
+		if (random%2 != 0) {
+			list.splice(0, 2, target, 0);
+			targetSize = targetSize + 2;
+			listSize = listSize - 2;
+			f = f + 1;
+			
+		}
+		else {
+			list.splice(0, 1, target, 0);
+			targetSize++;
+			listSize--;
+		}
+	}
+	else {
+		if (random%2 == 0) {
+			list.splice(listSize-2, 2, target, 0);
+			targetSize = targetSize + 2;
+			listSize = listSize - 2;
+			f = f + 1;
+			
+		}
+		else {
+			list.splice(listSize-1, 1, target, 0);
+			targetSize++;
+			listSize--;
+		}
+	}
+
+		/*if (((f+rand())%2) == 0){
+			list.splice(0,2,target,0);
+			listSize = listSize - 2;
+			targetSize = targetSize + 2;	
+			f = f + 1;
+		}
+		else {
+			list.splice(0,1,target,0);
+			listSize = listSize - 1;
+			targetSize = targetSize + 1;
+		
+		}*/
+			//f = f + rando - 1;
+		//}
+	/*	else {
+			list.splice(listSize-1,1,target,0);
+			listSize = listSize - 1;
+			targetSize = targetSize + 1;	
+		}*/
 
 		// Update LinkedList sizes
-		listSize--;
-		targetSize++;	
+		
 	}
 	
 	// Add shuffled cards back to card array
