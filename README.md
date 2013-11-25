@@ -61,26 +61,25 @@ Questions
 
 The type of shuffle I choose was the Mongean Shuffle.
 The link: http://en.wikipedia.org/wiki/Shuffling under Mongean Shuffle provides an explanation of the Shuffle.
-Only to make this shuffle more random instead of placing the next card on the bottom or top, I place it randomly into the deck of cards.
+Only to make this shuffle more random instead of placing 1 card on the bottom or top, I place either 1 or 2 cards on either the top or bottom of the deck.
 
 
 #### 2. Explain, in English, the steps of your shuffling algorithm.
 The steps of my shuffling alogrithm are:
 1. Take the last card from the main deck and place it by itself into the 'shuffled deck'
-2. Take the next card from the top of the main deck and placed the card on top or behind the one card in the 'shuffled deck'
-3. Take the next card from the top of the main deck and randomly place the card into the 'shuffled deck'
-4. Repeat Step 3 until all the cards from the main deck are in the 'shuffled deck'
+2. Randomly take either 1 or 2 cards from either the top or bottom of the deck and place them on top of the 'shuffled deck'.
+3. Repeat Step 2 until all the cards from the main deck are in the 'shuffled deck'.
 
 #### 3. Does your algorithm reasonably simulate the actual physical process of shuffling? Explain your reasoning in a short paragraph.
-My algorithm does not resonably simulate the actual physical process of shuffling. A card dealer will never take one card at a time and place it into another deck continuing this until all the cards are in the shuffled deck. My shuffling algorithm takes longer in real life than other shuffling algorithms such as Riffling. Also my shuffling algorithm is unprofessional for a card dealer to use.
+My algorithm does reasonably simulate the actual physical process of shuffling. A card dealer can easily take either 1 or 2 cards from the top or bottom of one deck and place them on top of the 'shuffled deck'
 
 #### 4. Do you use randomness in your algorithm (you probably *should*)? Explain how, and what random event it corresponds to in real life.
-Yes I use randomness in my algorithm when I pick an index in the shuffled deck to place the next card into.  
-The random event this corresponds to in real life is the dealer placing the card into the shuffled deck.
+Yes I use randomness in my algorithm in two instances. The first instance is deciding whether to take from the top or bottom of the deck. The next time I use randomness is deciding whether to take 1 or 2 cards and place them in the 'shuffled deck'.
+The random event this corresponds to in real life is the dealer choosing whether to take 1 or 2 cards from the top of bottom of the main deck and placing these card(s) into the 'shuffled deck'.
 
 #### 5. With your shuffle, how many times does it need to be repeated in order to give a random shuffle? Be sure to do several hundred thousand experiments.
 
-I have #define EXPS_PER_UPDATE 1 and #define SHUFFLES_PER_EXP 1 and it took about 3600 experiments before p < 100%.
+I have #define EXPS_PER_UPDATE 1 and #define SHUFFLES_PER_EXP 5 and it took about 1100 experiments before p < 100%.
 
 
 Portfolio Video
@@ -98,4 +97,4 @@ The video should certainly be less than 2 minutes long. I (or the grading assist
 
 #### 1. Give the link to your portfolio video on YouTube.
 
-http://www.youtube.com/watch?v=k2-OiOHaE7A&feature=youtu.be
+http://www.youtube.com/watch?v=cCHoJWYuzwA&feature=youtu.be
