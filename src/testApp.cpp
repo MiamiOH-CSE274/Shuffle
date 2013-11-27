@@ -17,7 +17,7 @@
 // Bigger numbers make the program much faster
 #define EXPS_PER_UPDATE 2
 //How many times should I call shuffle before measuring the result?
-#define SHUFFLES_PER_EXP 1
+#define SHUFFLES_PER_EXP 3
 
 //--------------------------------------------------------------
 void testApp::setup(){
@@ -149,9 +149,42 @@ void testApp::doRandExperiment(){
     }
 }
 
-void shuffle(unsigned int cards[], unsigned int len){
+void shuffle(unsigned int cards[], unsigned int len){ //this is Pharaoh Style
     //TODO Replace this with your own function that simulates the shuffling of a deck
     // of cards
+	ArrayQueue<Byte> deck1(len);
+	ArrayQueue<Byte> deck2(len);
+	for(int i=0; i<len; i++)
+		deck1.add(cards[i]);
+	Byte curTop=0, cutPoint = rand()%29, randSum=0;
+
+	bool unreal = true; //MODIFYING EVERYTHING BELOW TO FIT ANY DECK SIZE WAS ABSOLUTELY ANNOYING!
+	while(unreal){//this simulates a realistic error bounds for human cutting of a deck. If the two halves are 
+		if(cutPoint<(len/2)-(len/6)) //not close enough to equal, the dealer would compensate by eye. And even split is 26,
+			cutPoint += ((len/6)%6 +1)%(len-1);//so a reasonable tolerance is a 23-29 split
+		else
+			unreal=false;
+	}
+	ArrayQueue<Byte> topRands(17), bottomRands(17);
+	Byte i=0;
+	bool intermediateCheck=true;//this ensures we only check each subdeck boundary once
+	while(randSum<52){//DANG! Add in ability to calculate randSum
+		while(randSum<cutPoint+1){//these nested loops simulate the likely error when "leveraging" the two halves of the deck
+			topRands.add((rand()%3)+1);//together. The perfect scenario is a 1-1-1-1...from each deck, but we all know
+			i++;					//human error makes this unlikely to happen.
+		}
+		if(intermediateCheck && randSum>cutPoint+1)//ensures we really are splitting the deck properly and don't double-use cards.
+			topRands.add(topRands.removeTail()-(randSum-(cutPoint+1)));
+		bottomRands.add((rand()%3)+1); //continue adding into the rands for the second half of the deck.
+		i++;
+	}//end while
+	if(randSum>52)
+		bottomRands.add(bottomRands.removeTail()-(randSum-52));//again, ensures we really don't double use some cards.
+
+	Byte numRands = rands.getNumItems();
+	for(Byte i=0; i<numRands; i++){
+		if(curTop<cutPoint
+	}
     randomize(cards,len);
 }
 
