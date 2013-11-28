@@ -15,9 +15,9 @@
 
 //How many experiments should we do between each re-draw of the screen?
 // Bigger numbers make the program much faster
-#define EXPS_PER_UPDATE 2
+#define EXPS_PER_UPDATE 1
 //How many times should I call shuffle before measuring the result?
-#define SHUFFLES_PER_EXP 3
+#define SHUFFLES_PER_EXP 5
 
 //--------------------------------------------------------------
 void testApp::setup(){
@@ -151,7 +151,7 @@ void testApp::doRandExperiment(){
 
 void genRandsPharaoh(int bound, int& randSum, int& count, ArrayQueue<int>& rands){
 	while(randSum<bound){
-		int randNum = (rand()%3)+1;
+		int randNum = (rand()%3);
 		randSum += randNum;
 		rands.add(randNum);
 		count++;
