@@ -217,27 +217,40 @@ void shuffle(unsigned int cards[], unsigned int len){ //this is Pharaoh Style
 	cout << "numItems in bottomRands = " << bottomRands.getNumItems() << ". Counter for bottomRands = " << k << endl;
 	//now propagate both parts of the queue based on each queue of rands.
 
+
 	//the error is in this bottom loop!!!
-	
 	bool unfinishedUpper=true, unfinishedLower=true;
-	while( unfinishedUpper || unfinishedLower){
+	while( unfinishedUpper /*|| unfinishedLower*/){
 		if(j>0){//j is the number of remaining items in topRands
 			for(int l=topRands.remove(); l>0; l--){//cannot overwrite variables here!
+				cout << "arrayPosition before topRands removal: " << arrayPosition << endl;
 				cards[arrayPosition] = deck1.remove();
 				arrayPosition++;
+				cout << "arrayPosition after topRands removal: " << arrayPosition << endl;
 			}
 			j--;
-		} else
+			cout << "topRands counter j = " << j << endl;
+		} else {
 			unfinishedUpper=false;
-
+			cout << "items left in topRands = " << topRands.getNumItems() << ". And the counter j = " << j << endl;
+			cout << "items left in bottomRands = " << bottomRands.getNumItems() << ". And the counter k = " << k << endl;
+			cout << "arrayPosition after topRands propagation is finished: " << arrayPosition << endl;
+		}
+			//the error is in this bottom half of the loop
 		if(k>0){//k is the number of remaining items in bottomRands
 			for(int m=bottomRands.remove(); m>0; m--){//cannot overwrite variables here!
+				cout << "arrayPosition before bottomRands removal: " << arrayPosition << endl;
 				cards[arrayPosition] = deck2.remove();
 				arrayPosition++;
+				cout << "arrayPosition after bottomRands removal: " << arrayPosition << endl;
+				cout << "k before decrement: " << k << endl;
 			}
 			k--;
-		} else
+			cout << "bottomRands counter k = " << k << endl;
+		} else{
+			cout << "bottomRands has finished!" << endl;
 			unfinishedLower=false;
+		}
 	}/**/
 	randomize(cards, len);
 }
