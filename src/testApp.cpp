@@ -188,9 +188,12 @@ void shuffle(unsigned int cards[], unsigned int len){ //this is Pharaoh Style
 		}
 		if(intermediateCheck){//ensures we really are splitting the deck properly and don't double-use cards.
 			if(randSum>cutPoint){
+				cout << "cutPoint = " << cutPoint << " randSum before topRands check = " << randSum << endl;
 				int toRemove = topRands.removeTail();
+				cout << "The randomly generated number being removed from topRands is " << toRemove << endl;
+				randSum += toRemove-(randSum-cutPoint);
+				topRands.add(toRemove-(randSum-cutPoint));//cuts topRand sum down to cutPoint
 				randSum -= toRemove;
-				topRands.add(toRemove-(randSum-(cutPoint)));//cuts topRand sum down to cutPoint
 			}
 			intermediateCheck = false;
 			cout << "randSum after the topRands check = " << randSum << endl;
@@ -203,9 +206,11 @@ void shuffle(unsigned int cards[], unsigned int len){ //this is Pharaoh Style
 	}//end while
 	cout << "randSum before bottomRands check = " << randSum << endl;
 	if(randSum>len){
-		int toRemove = bottomRands.removeTail();
-		randSum -= toRemove;
-		bottomRands.add(toRemove-(randSum-52));//again, ensures we really don't double use some cards.
+		int otherRemove = bottomRands.removeTail();
+		cout << "The randomly generated number being removed from bottomRands is " << otherRemove << endl;
+		randSum += otherRemove-(randSum-52);
+		bottomRands.add(otherRemove-(randSum-52));//again, ensures we really don't double use some cards.
+		randSum -= otherRemove;
 	}
 	cout << "randSum after bottomRands check = " << randSum << endl;
 	cout << "randSum =" << randSum << ". numItems in topRands =" << topRands.getNumItems() << ". Counter for topRands =" << j << "." << endl;

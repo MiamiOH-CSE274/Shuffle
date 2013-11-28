@@ -51,7 +51,7 @@ T ArrayQueue<T>::removeTail(){
 	if(numItems==0)
 		throw (std::string)"No elements remain to be removed.";
 
-	T removed = backingArray[(front+numItems)%backingArraySize];
+	T removed = backingArray[(front+numItems-1)%backingArraySize];
 	numItems -= 1;
 	return removed;
 }//end remove
