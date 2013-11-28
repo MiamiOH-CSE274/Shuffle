@@ -149,9 +149,21 @@ void testApp::doRandExperiment(){
     }
 }
 
+void genRandsPharaoh(int bound, int& randSum, int& count, ArrayQueue<int>& rands){
+	while(randSum<bound){
+		int randNum = (rand()%3)+1;
+		randSum += randNum;
+		rands.add(randNum);
+		count++;
+	}
+	if(randSum>bound){
+		int toRemove = rands.removeTail();
+		rands.add(toRemove-(randSum-bound));//cuts topRand sum down to cutPoint
+		randSum = bound;
+	}
+}
+
 void shuffle(unsigned int cards[], unsigned int len){ //this is Pharaoh Style
-    //TODO Replace this with your own function that simulates the shuffling of a deck
-    // of cards
 
 	int cutPoint = rand()%29, randSum=0, arrayPosition=0;
 
@@ -162,10 +174,9 @@ void shuffle(unsigned int cards[], unsigned int len){ //this is Pharaoh Style
 		else
 			unreal=false;
 	}
-	cout << "cutPoint =" << cutPoint << endl;
 
-	ArrayQueue<int> deck1(cutPoint+1);
-	for(int i=0; i<cutPoint+1; i++)
+	ArrayQueue<int> deck1(cutPoint+1); //because cutpoint is items-1
+	for(int i=0; i<cutPoint+1; i++) //or indexes 0 -> cutPoint
 		deck1.add(cards[i]);
 
 	int upperHalfSize = len-(cutPoint+1);//avoids making multiple comparison calculations
@@ -175,84 +186,33 @@ void shuffle(unsigned int cards[], unsigned int len){ //this is Pharaoh Style
 
 	ArrayQueue<int> topRands(17), bottomRands(17); //for a standard deck size, 17 is a reasonable guess given the average randSum for 17 calls would be 34.
 	int j=0, k=0;                                  //using my algorithm
-	bool intermediateCheck=true;//this ensures we only check each subdeck boundary once
 
-	while(randSum<len){//DANG! Add in ability to calculate randSum
-		//one of these loops causes an error...
-		while(randSum<cutPoint+1){//these nested loops simulate the likely error when "leveraging" the two halves of the deck
-			int randNum = (rand()%3)+1;
-			topRands.add(randNum);//together. The perfect scenario is a 1-1-1-1...from each deck, but we all know
-			randSum+=randNum; //human error makes this unlikely to happen.
-			j++;		
-			cout << "randSum at" << j <<"th topRands addition = " << randSum << endl;
-		}
-		if(intermediateCheck){//ensures we really are splitting the deck properly and don't double-use cards.
-			if(randSum>cutPoint){
-				cout << "cutPoint = " << cutPoint << " randSum before topRands check = " << randSum << endl;
-				int toRemove = topRands.removeTail();
-				cout << "The randomly generated number being removed from topRands is " << toRemove << endl;
-				randSum += toRemove-(randSum-cutPoint);
-				topRands.add(toRemove-(randSum-cutPoint));//cuts topRand sum down to cutPoint
-				randSum -= toRemove;
-			}
-			intermediateCheck = false;
-			cout << "randSum after the topRands check = " << randSum << endl;
-		}
-		int randNum = (rand()%3)+1;
-		bottomRands.add(randNum); //continue adding into the rands for the second half of the deck.
-		randSum += randNum;
-		k++;
-		cout << "randSum at " << k <<"th bottomRands addition = " << randSum << endl;
-	}//end while
-	cout << "randSum before bottomRands check = " << randSum << endl;
-	if(randSum>len){
-		int otherRemove = bottomRands.removeTail();
-		cout << "The randomly generated number being removed from bottomRands is " << otherRemove << endl;
-		randSum += otherRemove-(randSum-52);
-		bottomRands.add(otherRemove-(randSum-52));//again, ensures we really don't double use some cards.
-		randSum -= otherRemove;
-	}
-	cout << "randSum after bottomRands check = " << randSum << endl;
-	cout << "randSum =" << randSum << ". numItems in topRands = " << topRands.getNumItems() << ". Counter for topRands = " << j << "." << endl;
-	cout << "numItems in bottomRands = " << bottomRands.getNumItems() << ". Counter for bottomRands = " << k << endl;
-	//now propagate both parts of the queue based on each queue of rands.
+	genRandsPharaoh(cutPoint+1, randSum, j, topRands); //uses helper functions to propagate the rands Queues
+	genRandsPharaoh(len, randSum, k, bottomRands);
 
-
-	//the error is in this bottom loop!!!
 	bool unfinishedUpper=true, unfinishedLower=true;
-	while( unfinishedUpper /*|| unfinishedLower*/){
+	while( unfinishedUpper || unfinishedLower){
 		if(j>0){//j is the number of remaining items in topRands
 			for(int l=topRands.remove(); l>0; l--){//cannot overwrite variables here!
-				cout << "arrayPosition before topRands removal: " << arrayPosition << endl;
 				cards[arrayPosition] = deck1.remove();
 				arrayPosition++;
-				cout << "arrayPosition after topRands removal: " << arrayPosition << endl;
 			}
 			j--;
-			cout << "topRands counter j = " << j << endl;
 		} else {
 			unfinishedUpper=false;
-			cout << "items left in topRands = " << topRands.getNumItems() << ". And the counter j = " << j << endl;
-			cout << "items left in bottomRands = " << bottomRands.getNumItems() << ". And the counter k = " << k << endl;
-			cout << "arrayPosition after topRands propagation is finished: " << arrayPosition << endl;
 		}
 			//the error is in this bottom half of the loop
 		if(k>0){//k is the number of remaining items in bottomRands
 			for(int m=bottomRands.remove(); m>0; m--){//cannot overwrite variables here!
-				cout << "arrayPosition before bottomRands removal: " << arrayPosition << endl;
 				cards[arrayPosition] = deck2.remove();
 				arrayPosition++;
-				cout << "arrayPosition after bottomRands removal: " << arrayPosition << endl;
-				cout << "k before decrement: " << k << endl;
 			}
 			k--;
-			cout << "bottomRands counter k = " << k << endl;
 		} else{
-			cout << "bottomRands has finished!" << endl;
 			unfinishedLower=false;
 		}
-	}/**/
-	randomize(cards, len);
+	}
+	//randomize(cards, len);
 }
 
 void testApp::doShuffleExperiment(int numShuffles){
