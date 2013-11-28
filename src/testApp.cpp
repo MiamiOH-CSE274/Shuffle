@@ -191,29 +191,29 @@ void shuffle(unsigned int cards[], unsigned int len){ //this is Pharaoh Style
 	genRandsPharaoh(len, randSum, k, bottomRands);
 
 	bool unfinishedUpper=true, unfinishedLower=true;
-	while( unfinishedUpper || unfinishedLower){
-		if(j>0){//j is the number of remaining items in topRands
+	while( unfinishedUpper || unfinishedLower ){//add in a random switcher here too for which deck to lead from?
+		int deckChoose = rand()%2;
+		if(deckChoose==0){
+			if(j>0){//j is the number of remaining items in topRands
 			for(int l=topRands.remove(); l>0; l--){//cannot overwrite variables here!
 				cards[arrayPosition] = deck1.remove();
 				arrayPosition++;
 			}
 			j--;
-		} else {
-			unfinishedUpper=false;
-		}
-			//the error is in this bottom half of the loop
+			} else
+				unfinishedUpper=false;
+		} 
 		if(k>0){//k is the number of remaining items in bottomRands
-			for(int m=bottomRands.remove(); m>0; m--){//cannot overwrite variables here!
-				cards[arrayPosition] = deck2.remove();
-				arrayPosition++;
-			}
-			k--;
-		} else{
-			unfinishedLower=false;
+		for(int m=bottomRands.remove(); m>0; m--){//cannot overwrite variables here!
+			cards[arrayPosition] = deck2.remove();
+			arrayPosition++;
 		}
-	}
+		k--;
+		} else
+			unfinishedLower=false;
+	}//end while
 	//randomize(cards, len);
-}
+}//end shuffle
 
 void testApp::doShuffleExperiment(int numShuffles){
     //Initialize a deck of cards
