@@ -152,8 +152,8 @@ void testApp::doRandExperiment(){
 void shuffle(unsigned int cards[], unsigned int len){ //this is Pharaoh Style
     //TODO Replace this with your own function that simulates the shuffling of a deck
     // of cards
-	
-	Byte cutPoint = rand()%29, randSum=0, arrayPosition=0;
+
+	int cutPoint = rand()%29, randSum=0, arrayPosition=0;
 
 	bool unreal = true; //MODIFYING EVERYTHING BELOW TO FIT ANY DECK SIZE WAS ABSOLUTELY ANNOYING!
 	while(unreal){//this simulates a realistic error bounds for human cutting of a deck. If the two halves are 
@@ -163,57 +163,64 @@ void shuffle(unsigned int cards[], unsigned int len){ //this is Pharaoh Style
 			unreal=false;
 	}
 
-	ArrayQueue<Byte> deck1(cutPoint+1);
+	ArrayQueue<int> deck1(cutPoint+1);
 	for(int i=0; i<cutPoint+1; i++)
 		deck1.add(cards[i]);
 
-	Byte upperHalfSize = len-(cutPoint+1);//avoids making multiple comparison calculations
-	ArrayQueue<Byte> deck2(upperHalfSize);
+	int upperHalfSize = len-(cutPoint+1);//avoids making multiple comparison calculations
+	ArrayQueue<int> deck2(upperHalfSize);
 	for(int i=0; i<upperHalfSize; i++)
 		deck2.add(cards[i+cutPoint+1]);
 
-	ArrayQueue<Byte> topRands(17), bottomRands(17); //for a standard deck size, 17 is a reasonable guess given the average randSum for 17 calls would be 34.
-	Byte i=0, j=0;                                  //using my algorithm
+	ArrayQueue<int> topRands(17), bottomRands(17); //for a standard deck size, 17 is a reasonable guess given the average randSum for 17 calls would be 34.
+	int j=0, k=0;                                  //using my algorithm
 	bool intermediateCheck=true;//this ensures we only check each subdeck boundary once
+
 	while(randSum<52){//DANG! Add in ability to calculate randSum
-		while(randSum<cutPoint+1){//these nested loops simulate the likely error when "leveraging" the two halves of the deck
-			Byte randNum = (rand()%3)+1;
+		//one of these loops causes an error...
+		while(randSum<52/*cutPoint+1*/){//these nested loops simulate the likely error when "leveraging" the two halves of the deck
+			int randNum = (rand()%3)+1;
 			topRands.add(randNum);//together. The perfect scenario is a 1-1-1-1...from each deck, but we all know
 			randSum+=randNum; //human error makes this unlikely to happen.
-			i++;					
+			j++;					
 		}
-		if(intermediateCheck && randSum>cutPoint+1){//ensures we really are splitting the deck properly and don't double-use cards.
+		if(intermediateCheck && randSum>cutPoint){//ensures we really are splitting the deck properly and don't double-use cards.
 			topRands.add(topRands.removeTail()-(randSum-(cutPoint+1)));//cuts topRand sum down to cutPoint+1
 			intermediateCheck = false;
 		}
 		bottomRands.add((rand()%3)+1); //continue adding into the rands for the second half of the deck.
-		j++;
+		k++;
 	}//end while
-	if(randSum>52)
+	cout << "randSum before check =" << randSum << endl;
+	if(randSum>len)
 		bottomRands.add(bottomRands.removeTail()-(randSum-52));//again, ensures we really don't double use some cards.
-
+	
+	cout << "randSum =" << randSum << ". numItems in topRands =" << topRands.getNumItems() << ". Counter for topRands =" << j << "." << endl;
 	//now propagate both parts of the queue based on each queue of rands.
-	bool finishedUpper=false, finishedLower=false;
-	while(!finishedUpper || !finishedLower){
-		if(i>0){
-			for(Byte k=topRands.remove(); k>0; k--){//cannot overwrite variables here!
-				cards[arrayPosition] = deck1.remove();
-				arrayPosition++;
-			}
-			i--;
-		} else
-			finishedUpper=true;
 
-		if(j>0){
-			for(Byte l=bottomRands.remove(); l>0; l--){//cannot overwrite variables here!
-				cards[arrayPosition] = deck2.remove();
+	//the error is in this bottom loop!!!
+	/*
+	bool finishedUpper=false, finishedLower=false;
+	while(!(finishedUpper) || !(finishedLower)){
+		if(j>0){//j is the number of remaining items in topRands
+			for(int l=topRands.remove(); l>0; l--){//cannot overwrite variables here!
+				cards[arrayPosition] = deck1.remove();
 				arrayPosition++;
 			}
 			j--;
 		} else
+			finishedUpper=true;
+
+		if(k>0){//k is the number of remaining items in bottomRands
+			for(int m=bottomRands.remove(); m>0; m--){//cannot overwrite variables here!
+				cards[arrayPosition] = deck2.remove();
+				arrayPosition++;
+			}
+			k--;
+		} else
 			finishedLower=true;
-	}
-	//randomize(cards[], len);
+	}/**/
+	randomize(cards, len);
 }
 
 void testApp::doShuffleExperiment(int numShuffles){
