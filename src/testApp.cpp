@@ -157,11 +157,12 @@ void shuffle(unsigned int cards[], unsigned int len){ //this is Pharaoh Style
 
 	bool unreal = true; //MODIFYING EVERYTHING BELOW TO FIT ANY DECK SIZE WAS ABSOLUTELY ANNOYING!
 	while(unreal){//this simulates a realistic error bounds for human cutting of a deck. If the two halves are 
-		if(cutPoint<(len/2)-(len/12)) //not close enough to equal, the dealer would compensate by eye. And even split is 26,
+		if(cutPoint<((len/2)-(len/12))) //not close enough to equal, the dealer would compensate by eye. And even split is 26,
 			cutPoint += ((len/12)%6 +1)%(len-1);//so a reasonable tolerance is a 23-29 split (indexes 22 to 28)
 		else
 			unreal=false;
 	}
+	cout << "cutPoint =" << cutPoint << endl;
 
 	ArrayQueue<int> deck1(cutPoint+1);
 	for(int i=0; i<cutPoint+1; i++)
@@ -176,25 +177,37 @@ void shuffle(unsigned int cards[], unsigned int len){ //this is Pharaoh Style
 	int j=0, k=0;                                  //using my algorithm
 	bool intermediateCheck=true;//this ensures we only check each subdeck boundary once
 
-	while(randSum<52){//DANG! Add in ability to calculate randSum
+	while(randSum<len){//DANG! Add in ability to calculate randSum
 		//one of these loops causes an error...
-		while(randSum<52/*cutPoint+1*/){//these nested loops simulate the likely error when "leveraging" the two halves of the deck
+		while(randSum<cutPoint+1){//these nested loops simulate the likely error when "leveraging" the two halves of the deck
 			int randNum = (rand()%3)+1;
 			topRands.add(randNum);//together. The perfect scenario is a 1-1-1-1...from each deck, but we all know
 			randSum+=randNum; //human error makes this unlikely to happen.
-			j++;					
+			j++;		
+			cout << "randSum at" << j <<"th topRands addition = " << randSum << endl;
 		}
-		if(intermediateCheck && randSum>cutPoint){//ensures we really are splitting the deck properly and don't double-use cards.
-			topRands.add(topRands.removeTail()-(randSum-(cutPoint+1)));//cuts topRand sum down to cutPoint+1
+		if(intermediateCheck){//ensures we really are splitting the deck properly and don't double-use cards.
+			if(randSum>cutPoint){
+				int toRemove = topRands.removeTail();
+				randSum -= toRemove;
+				topRands.add(toRemove-(randSum-(cutPoint)));//cuts topRand sum down to cutPoint
+			}
 			intermediateCheck = false;
+			cout << "randSum after the topRands check = " << randSum << endl;
 		}
-		bottomRands.add((rand()%3)+1); //continue adding into the rands for the second half of the deck.
+		int randNum = (rand()%3)+1;
+		bottomRands.add(randNum); //continue adding into the rands for the second half of the deck.
+		randSum += randNum;
 		k++;
+		cout << "randSum at " << k <<"th bottomRands addition = " << randSum << endl;
 	}//end while
-	cout << "randSum before check =" << randSum << endl;
-	if(randSum>len)
-		bottomRands.add(bottomRands.removeTail()-(randSum-52));//again, ensures we really don't double use some cards.
-	
+	cout << "randSum before bottomRands check = " << randSum << endl;
+	if(randSum>len){
+		int toRemove = bottomRands.removeTail();
+		randSum -= toRemove;
+		bottomRands.add(toRemove-(randSum-52));//again, ensures we really don't double use some cards.
+	}
+	cout << "randSum after bottomRands check = " << randSum << endl;
 	cout << "randSum =" << randSum << ". numItems in topRands =" << topRands.getNumItems() << ". Counter for topRands =" << j << "." << endl;
 	//now propagate both parts of the queue based on each queue of rands.
 
