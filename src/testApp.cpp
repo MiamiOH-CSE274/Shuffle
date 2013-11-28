@@ -152,40 +152,68 @@ void testApp::doRandExperiment(){
 void shuffle(unsigned int cards[], unsigned int len){ //this is Pharaoh Style
     //TODO Replace this with your own function that simulates the shuffling of a deck
     // of cards
-	ArrayQueue<Byte> deck1(len);
-	ArrayQueue<Byte> deck2(len);
-	for(int i=0; i<len; i++)
-		deck1.add(cards[i]);
-	Byte curTop=0, cutPoint = rand()%29, randSum=0;
+	
+	Byte cutPoint = rand()%29, randSum=0, arrayPosition=0;
 
 	bool unreal = true; //MODIFYING EVERYTHING BELOW TO FIT ANY DECK SIZE WAS ABSOLUTELY ANNOYING!
 	while(unreal){//this simulates a realistic error bounds for human cutting of a deck. If the two halves are 
-		if(cutPoint<(len/2)-(len/6)) //not close enough to equal, the dealer would compensate by eye. And even split is 26,
-			cutPoint += ((len/6)%6 +1)%(len-1);//so a reasonable tolerance is a 23-29 split
+		if(cutPoint<(len/2)-(len/12)) //not close enough to equal, the dealer would compensate by eye. And even split is 26,
+			cutPoint += ((len/12)%6 +1)%(len-1);//so a reasonable tolerance is a 23-29 split (indexes 22 to 28)
 		else
 			unreal=false;
 	}
-	ArrayQueue<Byte> topRands(17), bottomRands(17);
-	Byte i=0;
+
+	ArrayQueue<Byte> deck1(cutPoint+1);
+	for(int i=0; i<cutPoint+1; i++)
+		deck1.add(cards[i]);
+
+	Byte upperHalfSize = len-(cutPoint+1);//avoids making multiple comparison calculations
+	ArrayQueue<Byte> deck2(upperHalfSize);
+	for(int i=0; i<upperHalfSize; i++)
+		deck2.add(cards[i+cutPoint+1]);
+
+	ArrayQueue<Byte> topRands(17), bottomRands(17); //for a standard deck size, 17 is a reasonable guess given the average randSum for 17 calls would be 34.
+	Byte i=0, j=0;                                  //using my algorithm
 	bool intermediateCheck=true;//this ensures we only check each subdeck boundary once
 	while(randSum<52){//DANG! Add in ability to calculate randSum
 		while(randSum<cutPoint+1){//these nested loops simulate the likely error when "leveraging" the two halves of the deck
-			topRands.add((rand()%3)+1);//together. The perfect scenario is a 1-1-1-1...from each deck, but we all know
-			i++;					//human error makes this unlikely to happen.
+			Byte randNum = (rand()%3)+1;
+			topRands.add(randNum);//together. The perfect scenario is a 1-1-1-1...from each deck, but we all know
+			randSum+=randNum; //human error makes this unlikely to happen.
+			i++;					
 		}
-		if(intermediateCheck && randSum>cutPoint+1)//ensures we really are splitting the deck properly and don't double-use cards.
-			topRands.add(topRands.removeTail()-(randSum-(cutPoint+1)));
+		if(intermediateCheck && randSum>cutPoint+1){//ensures we really are splitting the deck properly and don't double-use cards.
+			topRands.add(topRands.removeTail()-(randSum-(cutPoint+1)));//cuts topRand sum down to cutPoint+1
+			intermediateCheck = false;
+		}
 		bottomRands.add((rand()%3)+1); //continue adding into the rands for the second half of the deck.
-		i++;
+		j++;
 	}//end while
 	if(randSum>52)
 		bottomRands.add(bottomRands.removeTail()-(randSum-52));//again, ensures we really don't double use some cards.
 
-	Byte numRands = rands.getNumItems();
-	for(Byte i=0; i<numRands; i++){
-		if(curTop<cutPoint
+	//now propagate both parts of the queue based on each queue of rands.
+	bool finishedUpper=false, finishedLower=false;
+	while(!finishedUpper || !finishedLower){
+		if(i>0){
+			for(Byte k=topRands.remove(); k>0; k--){//cannot overwrite variables here!
+				cards[arrayPosition] = deck1.remove();
+				arrayPosition++;
+			}
+			i--;
+		} else
+			finishedUpper=true;
+
+		if(j>0){
+			for(Byte l=bottomRands.remove(); l>0; l--){//cannot overwrite variables here!
+				cards[arrayPosition] = deck2.remove();
+				arrayPosition++;
+			}
+			j--;
+		} else
+			finishedLower=true;
 	}
-    randomize(cards,len);
+	//randomize(cards[], len);
 }
 
 void testApp::doShuffleExperiment(int numShuffles){
