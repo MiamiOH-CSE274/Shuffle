@@ -50,32 +50,50 @@ These are optional, but can be worth bonus points if you come up with something 
 
 1. Can you design your shuffle so that it is:
  1. Realistic (corresponds to something you can really do in real life)
+	As implemented, my shuffle is a 100% realistic pharaoh shuffle
  2. NOT really random
+	As you can see by watching the graphical test, the shuffle is not entirely random
  3. Fools the Chi-square test, and also the visual inspection
+	Doing this would most likely negate the realistic shuffling idea. The easiest way to break these tests is keep a particular set of cards
+	together and shuffle the others around this set. It's really simple to do with an overhand shuffle, but much more difficult with a realistic shuffle
+	to implement by code.
 2. How would you design a statistical test that proves that your shuffle isn't random? (discuss this in your portfolio video)
+	This is a truly simple matter. Watch for associations of distance between particular cards. Just as one would want to manipulate
+	the four aces and keep them in a certain order to be dealt to them, one could prove a visually random shuffle is not random by also
+	watching the distance associations of cards.
 
 Questions
 =========
 
 #### 1. Which type of shuffle did you choose? If it wasn't one of the four that I listed, please also provide me with a link to a video or text description of the shuffle you implemented.
 
-TODO
+I implemented the Pharaoh Shuffle, to a fully realistic degree (which negates the total randomness desired).
 
 #### 2. Explain, in English, the steps of your shuffling algorithm.
 
-TODO
+-The deck is virtually split into two "halves" which have a reasonable error bound for the human eyes to see or hands to feel.
+-Then two series of random numbers are generated between 1 and 4 which sum up to the size of each "half of the deck."
+-Then a random number decides whether to lead with the top half of the deck or the bottom half in the given shuffle iteration.
+-Then the series of RN(s) are used to layer the cards on top of each other to simulate the fusion of the decks. Cards below other cards in the same half
+of the deck cannot end in a higher position in the final result than those other cards, meeting the realistic physical requirements of a shuffle.
+-After the deck is reestablished in the ArrayQueue, each card is removed to the array, completing the shuffle.
 
 #### 3. Does your algorithm reasonably simulate the actual physical process of shuffling? Explain your reasoning in a short paragraph.
 
-TODO
+I believe it does, and I believe my explanation of the algorithm reasonably answers this question, but, in short:
+A reasonable "cutting" of the deck
+A reasonable, tight change distribution for the cards (because a pharaoh shuffle positions to two halves of the deck right against each other and pushes them together.
+No cards in one half of a deck can end in a position higher than its predecessors
 
 #### 4. Do you use randomness in your algorithm (you probably *should*)? Explain how, and what random event it corresponds to in real life.
 
-TODO
+The randomness in my algorithm exists in cutting the deck, choosing which half leads, and how many cards from each half of the deck fall before the next card(s)
+fall from the other half into the main deck.
 
 #### 5. With your shuffle, how many times does it need to be repeated in order to give a random shuffle? Be sure to do several hundred thousand experiments.
 
-TODO
+The shuffle begins randomly, but as time passes a tiny pattern emerges on the edge cases of the deck, reducing its true randomness. And this is to be expected
+when the cards are not being dealt out and returned at random
 
 Portfolio Video
 =========
