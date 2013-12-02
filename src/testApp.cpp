@@ -15,9 +15,9 @@
 
 //How many experiments should we do between each re-draw of the screen?
 // Bigger numbers make the program much faster
-#define EXPS_PER_UPDATE 1
+#define EXPS_PER_UPDATE 100
 //How many times should I call shuffle before measuring the result?
-#define SHUFFLES_PER_EXP 5
+#define SHUFFLES_PER_EXP 7
 
 //--------------------------------------------------------------
 void testApp::setup(){
@@ -202,15 +202,17 @@ void shuffle(unsigned int cards[], unsigned int len){ //this is Pharaoh Style
 			j--;
 			} else
 				unfinishedUpper=false;
-		} 
-		if(k>0){//k is the number of remaining items in bottomRands
-		for(int m=bottomRands.remove(); m>0; m--){//cannot overwrite variables here!
+		} else{
+			if(k>0){//k is the number of remaining items in bottomRands
+			for(int m=bottomRands.remove(); m>0; m--){//cannot overwrite variables here!
 			cards[arrayPosition] = deck2.remove();
 			arrayPosition++;
-		}
-		k--;
+			}
+			k--;
 		} else
 			unfinishedLower=false;
+		}
+		
 	}//end while
 	//randomize(cards, len);
 }//end shuffle
