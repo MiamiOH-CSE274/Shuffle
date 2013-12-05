@@ -1,6 +1,7 @@
 #pragma once
 
 #include "ofMain.h"
+#include "LinkedList.h"
 
 class testApp : public ofBaseApp{
 public:
