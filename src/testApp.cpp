@@ -15,9 +15,9 @@
 
 //How many experiments should we do between each re-draw of the screen?
 // Bigger numbers make the program much faster
-#define EXPS_PER_UPDATE 2
+#define EXPS_PER_UPDATE 10
 //How many times should I call shuffle before measuring the result?
-#define SHUFFLES_PER_EXP 32
+#define SHUFFLES_PER_EXP 12
 
 //--------------------------------------------------------------
 void testApp::setup(){

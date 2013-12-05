@@ -71,11 +71,11 @@ Yes. When doing a riffle shuffle, you fist split the deck. Since a human doesnt 
 
 #### 4. Do you use randomness in your algorithm (you probably *should*)? Explain how, and what random event it corresponds to in real life.
 
-I use it to split the deck, as well as merge the two decks.
+I used randomness to determine where to split the deck (which will always be somewhere around the middle of the deck), as well as to determine how many of each card would fall from each deck before putting cards from the other half of the dck.
 
 #### 5. With your shuffle, how many times does it need to be repeated in order to give a random shuffle? Be sure to do several hundred thousand experiments.
 
-16 appears to be the number of shuffles per experiment that results in a stable probability of randomness from the chi square test.
+12 appears to be the number of shuffles per experiment that results in a stable probability of randomness from the chi square test.
 
 Portfolio Video
 =========
