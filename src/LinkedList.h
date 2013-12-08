@@ -46,6 +46,8 @@ class LinkedList : public List <T> {
   //Delete any dynamically allocated memory. You will need to loop
   // through all your nodes, deleting them one at a time
   virtual ~LinkedList();
+    
+  Node* find(unsigned long i);
 
  private:
   //Pointer to the dummy node.
@@ -54,7 +56,7 @@ class LinkedList : public List <T> {
   //Return a pointer to item i.
   //Special cases: If i == (numItems)-1, return a pointer to the dummyNode
   //If i is an invalid number, throw a string exception
-  Node* find(unsigned long i);
+  //Node* find(unsigned long i);
   
   //Number of items in the list
   unsigned long numItems;
