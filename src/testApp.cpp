@@ -19,7 +19,7 @@
 // Bigger numbers make the program much faster
 #define EXPS_PER_UPDATE 2
 //How many times should I call shuffle before measuring the result?
-#define SHUFFLES_PER_EXP 10
+#define SHUFFLES_PER_EXP 500
 
 //--------------------------------------------------------------
 void testApp::setup(){
