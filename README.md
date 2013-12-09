@@ -1,6 +1,3 @@
-Author
-==========
-"Vutisalchavakul, Pob", vutisat
 Shuffle
 =======
 
@@ -59,19 +56,24 @@ Questions
 
 #### 1. Which type of shuffle did you choose? If it wasn't one of the four that I listed, please also provide me with a link to a video or text description of the shuffle you implemented.
 
-TODO
+I went with the bridge shuffle
 
 #### 2. Explain, in English, the steps of your shuffling algorithm.
 
-TODO
+1)I copied the deck into an linked list
+2)I made a second new link list
+3)I divide the deck at random amount and transfer those cards to second deck
+4)I made a third linked list where the shuffled deck will be
+5)I wrote an algorithm that takes both list and put it into the final incrementally
+6)I copy the final list into the original deck.
 
 #### 3. Does your algorithm reasonably simulate the actual physical process of shuffling? Explain your reasoning in a short paragraph.
 
-TODO
+Yes, everything is random from original division to incrementally adding to the final shuffled deck.
 
 #### 4. Do you use randomness in your algorithm (you probably *should*)? Explain how, and what random event it corresponds to in real life.
 
-TODO
+Yes, using the time method I found on google. Randomness can occur at original division of the deck into two. Randomness will occur when you're briding the two decks into the final one.
 
 #### 5. With your shuffle, how many times does it need to be repeated in order to give a random shuffle? Be sure to do several hundred thousand experiments.
 

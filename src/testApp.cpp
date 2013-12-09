@@ -187,7 +187,7 @@ void shuffle(unsigned int cards[], unsigned int len){
 
 			//This takes cards from first deck put it in the final deck.
 			while(addRange > 0){
-				if(deck.size() != 0){
+				if(deck.size() > addRange){
 					finalDeck.set(finalDeckSize, (deck.get(addRange)));
 					finalDeckSize++;
 					deck.remove(addRange);
@@ -198,7 +198,7 @@ void shuffle(unsigned int cards[], unsigned int len){
 		//generate range again now for second deck
 		addRange = rand()%3 +1;
 			while(addRange > 0){
-				if(deck.size() != 0){
+				if(deck.size() > addRange){
 					finalDeck.set(finalDeckSize, (deck2.get(addRange)));
 					finalDeckSize++;
 					deck.remove(addRange);
@@ -210,7 +210,6 @@ void shuffle(unsigned int cards[], unsigned int len){
 	for(int i=0; i<52; i++){
 		cards[i] = finalDeck.get(i);
 	}
-	//
 }
 
 void testApp::doShuffleExperiment(int numShuffles){
