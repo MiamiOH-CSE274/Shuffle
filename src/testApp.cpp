@@ -1,4 +1,6 @@
 #include "testApp.h"
+#include "LinkedList.h"
+#include <ctime> 
 
 /* READ THIS FIRST!
  *
@@ -150,9 +152,65 @@ void testApp::doRandExperiment(){
 }
 
 void shuffle(unsigned int cards[], unsigned int len){
-    //TODO Replace this with your own function that simulates the shuffling of a deck
-    // of cards
-    randomize(cards,len);
+	//I'm going to do the Bridge shuffle
+	
+	//Making a Linkedlist of the deck
+	LinkedList<int> deck;
+	for(int i=0; i<52; i++){ 
+		deck.add(i, cards[i]);}
+
+	//First step is break the deck into relalatively half
+	//please note that the LinkedList project I completed, however the splice method is from Nick Contini
+	LinkedList<int> deck2;
+	
+	//I learn how to generate random numbers from stckOverflow using time function
+	int randSize;
+	srand(time(0)); // This will randomized number by help of time.
+	
+	randSize=rand()%7+1; // Randomizing the number between 1-7.
+
+	//possible range is between 23 - 29
+	deck.splice(0, 22 + randSize, deck2, 0);
+
+	LinkedList<int> finalDeck;
+
+	//Dummy method to make the finalDeck have 52 node (not the best way to do it but it's what I can think of so I can set nodes later)
+	for(int i=0; i<52; i++){ 
+		finalDeck.add(i, cards[i]);}
+
+
+	int finalDeckSize = 0;
+
+	while(deck.size() > 0 || deck2.size() > 0){
+		int addRange;
+		addRange = rand()%3 +1;
+
+			//This takes cards from first deck put it in the final deck.
+			while(addRange > 0){
+				if(deck.size() != 0){
+					finalDeck.set(finalDeckSize, (deck.get(addRange)));
+					finalDeckSize++;
+					deck.remove(addRange);
+				}
+				addRange--;
+			}
+		
+		//generate range again now for second deck
+		addRange = rand()%3 +1;
+			while(addRange > 0){
+				if(deck.size() != 0){
+					finalDeck.set(finalDeckSize, (deck2.get(addRange)));
+					finalDeckSize++;
+					deck.remove(addRange);
+				}
+				addRange--;
+			}
+	}
+
+	for(int i=0; i<52; i++){
+		cards[i] = finalDeck.get(i);
+	}
+	//
 }
 
 void testApp::doShuffleExperiment(int numShuffles){
