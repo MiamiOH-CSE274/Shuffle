@@ -1,4 +1,6 @@
 #include "testApp.h"
+#include "LinkedList.h"
+
 
 /* READ THIS FIRST!
  *
@@ -17,7 +19,7 @@
 // Bigger numbers make the program much faster
 #define EXPS_PER_UPDATE 2
 //How many times should I call shuffle before measuring the result?
-#define SHUFFLES_PER_EXP 1
+#define SHUFFLES_PER_EXP 500
 
 //--------------------------------------------------------------
 void testApp::setup(){
@@ -150,16 +152,49 @@ void testApp::doRandExperiment(){
 }
 
 void shuffle(unsigned int cards[], unsigned int len){
-    //TODO Replace this with your own function that simulates the shuffling of a deck
-    // of cards
-    randomize(cards,len);
+    //randomize(cards, len);
+    
+    unsigned int deckSizeOne = rand() % 10 + 20;
+    LinkedList<int> deckOne;
+    for (int i = 0; i < 52; i++)
+        deckOne.add(i, cards[i]);
+    
+    LinkedList<int> deckTwo;
+    deckOne.splice(0, 52 - deckSizeOne, deckTwo, 0);
+    unsigned int completeDeck = 0;
+    
+    while (deckOne.size() > 3 && deckTwo.size() > 3){
+        unsigned int r = rand() % 2 + 1;
+        for (int i = 0; i < r; i++){
+            cards[completeDeck] = deckOne.get(0);
+            deckOne.remove(0);
+            completeDeck++;
+        }
+        r = rand() % 2 + 1;
+        for (int i = 0; i < r; i++){
+            cards[completeDeck] = deckTwo.get(0);
+            deckTwo.remove(0);
+            completeDeck++;
+        }
+    }
+    while (deckOne.size() > 0){
+            cards[completeDeck] = deckOne.get(0);
+            deckOne.remove(0);
+            completeDeck++;
+    }
+    while (deckTwo.size() > 0) {
+        cards[completeDeck] = deckTwo.get(0);
+        deckTwo.remove(0);
+        completeDeck++;
+    }
 }
+
 
 void testApp::doShuffleExperiment(int numShuffles){
     //Initialize a deck of cards
     static unsigned int cards[52];
     for(int i=0;i<52;i++){
-        cards[i] = i;
+        cards[i] = i;;
     }
     
     //randomly scramble it using shuffle

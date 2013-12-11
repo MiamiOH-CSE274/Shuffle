@@ -59,11 +59,11 @@ Questions
 
 #### 1. Which type of shuffle did you choose? If it wasn't one of the four that I listed, please also provide me with a link to a video or text description of the shuffle you implemented.
 
-TODO
+I chose the pharaoh shuffle to implement.
 
 #### 2. Explain, in English, the steps of your shuffling algorithm.
 
-TODO
+In my shuffle function, I split the deck into two separate decks (linked lists) somewhere near the middle (using a random selection of where to split).  I then re-insert the cards from each smaller deck back into the main deck, using a random number of cards from each deck, and alternating which deck I am picking from. So I will lay down 1-3 cards from deck1, then 1-3 cards from deck2, and so on until all the cards are back in the deck.
 
 #### 3. Does your algorithm reasonably simulate the actual physical process of shuffling? Explain your reasoning in a short paragraph.
 
@@ -71,7 +71,9 @@ TODO
 
 #### 4. Do you use randomness in your algorithm (you probably *should*)? Explain how, and what random event it corresponds to in real life.
 
-TODO
+I use randomness to split the deck in half.  This applies to real life because you're not sure if exactly half the deck is in each hand when you split it, it's probably a few cards off.
+
+I also use randomness to place the cards back into the main deck.  A random choice of 1-3 cards will be put down from each deck until they are all back in one deck.
 
 #### 5. With your shuffle, how many times does it need to be repeated in order to give a random shuffle? Be sure to do several hundred thousand experiments.
 
@@ -92,4 +94,6 @@ The video should certainly be less than 2 minutes long. I (or the grading assist
 
 #### 1. Give the link to your portfolio video on YouTube.
 
-TODO
+The video ran longer than 2 minutes.  It takes my computer a little longer than normal to start up OpenFrameworks.
+
+http://www.youtube.com/watch?v=UUhOWCi-hZE&feature=youtu.be

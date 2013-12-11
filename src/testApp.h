@@ -13,6 +13,8 @@ private:
     void doShuffleExperiment(int numShuffles);
     std::string pValue(double matrix[]);
     
+    void merge();
+    
     unsigned long experimentsDone;
     double shuffleCounts[52*52];
     double randCounts[52*52];
