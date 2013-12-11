@@ -15,9 +15,9 @@
 
 //How many experiments should we do between each re-draw of the screen?
 // Bigger numbers make the program much faster
-#define EXPS_PER_UPDATE 2
+#define EXPS_PER_UPDATE 100
 //How many times should I call shuffle before measuring the result?
-#define SHUFFLES_PER_EXP 1
+#define SHUFFLES_PER_EXP 7
 
 //--------------------------------------------------------------
 void testApp::setup(){
@@ -149,11 +149,73 @@ void testApp::doRandExperiment(){
     }
 }
 
-void shuffle(unsigned int cards[], unsigned int len){
-    //TODO Replace this with your own function that simulates the shuffling of a deck
-    // of cards
-    randomize(cards,len);
+void genRandsPharaoh(int bound, int& randSum, int& count, ArrayQueue<int>& rands){
+	while(randSum<bound){
+		int randNum = (rand()%3);
+		randSum += randNum;
+		rands.add(randNum);
+		count++;
+	}
+	if(randSum>bound){
+		int toRemove = rands.removeTail();
+		rands.add(toRemove-(randSum-bound));//cuts topRand sum down to cutPoint
+		randSum = bound;
+	}
 }
+
+void shuffle(unsigned int cards[], unsigned int len){ //this is Pharaoh Style
+
+	int cutPoint = rand()%29, randSum=0, arrayPosition=0;
+
+	bool unreal = true; //MODIFYING EVERYTHING BELOW TO FIT ANY DECK SIZE WAS ABSOLUTELY ANNOYING!
+	while(unreal){//this simulates a realistic error bounds for human cutting of a deck. If the two halves are 
+		if(cutPoint<((len/2)-(len/12))) //not close enough to equal, the dealer would compensate by eye. And even split is 26,
+			cutPoint += ((len/12)%6 +1)%(len-1);//so a reasonable tolerance is a 23-29 split (indexes 22 to 28)
+		else
+			unreal=false;
+	}
+
+	ArrayQueue<int> deck1(cutPoint+1); //because cutpoint is items-1
+	for(int i=0; i<cutPoint+1; i++) //or indexes 0 -> cutPoint
+		deck1.add(cards[i]);
+
+	int upperHalfSize = len-(cutPoint+1);//avoids making multiple comparison calculations
+	ArrayQueue<int> deck2(upperHalfSize);
+	for(int i=0; i<upperHalfSize; i++)
+		deck2.add(cards[i+cutPoint+1]);
+
+	ArrayQueue<int> topRands(17), bottomRands(17); //for a standard deck size, 17 is a reasonable guess given the average randSum for 17 calls would be 34.
+	int j=0, k=0;                                  //using my algorithm
+
+	genRandsPharaoh(cutPoint+1, randSum, j, topRands); //uses helper functions to propagate the rands Queues
+	genRandsPharaoh(len, randSum, k, bottomRands);
+
+	bool unfinishedUpper=true, unfinishedLower=true;
+	while( unfinishedUpper || unfinishedLower ){//add in a random switcher here too for which deck to lead from?
+		int deckChoose = rand()%2;
+		if(deckChoose==0){
+			if(j>0){//j is the number of remaining items in topRands
+			for(int l=topRands.remove(); l>0; l--){//cannot overwrite variables here!
+				cards[arrayPosition] = deck1.remove();
+				arrayPosition++;
+			}
+			j--;
+			} else
+				unfinishedUpper=false;
+		} else{
+			if(k>0){//k is the number of remaining items in bottomRands
+			for(int m=bottomRands.remove(); m>0; m--){//cannot overwrite variables here!
+			cards[arrayPosition] = deck2.remove();
+			arrayPosition++;
+			}
+			k--;
+		} else
+			unfinishedLower=false;
+		}
+		
+	}//end while
+	//randomize(cards, len);
+}//end shuffle
 
 void testApp::doShuffleExperiment(int numShuffles){
     //Initialize a deck of cards
